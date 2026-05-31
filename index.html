@@ -27,6 +27,18 @@
   <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
+  <!-- ============================================================
+       CONFIGURE AQUI — mude apenas neste bloco
+       ============================================================ -->
+  <script>
+    window.ATTEEK = {
+      // URL do checkout no Kiwify (Produtos → link de vendas)
+      checkout: 'https://pay.kiwify.com.br/SEU_PRODUTO',
+      // URL do app (ex: https://app.atteek.com)
+      app: 'https://SEU-APP.vercel.app',
+    };
+  </script>
+
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -153,8 +165,8 @@
           <a href="#preco" class="hover:text-ink transition-colors">Preço</a>
           <a href="#faq" class="hover:text-ink transition-colors">FAQ</a>
         </div>
-        <a href="#preco" class="hidden sm:inline-flex items-center gap-2 bg-lime text-ink font-display font-600 text-sm px-5 py-2.5 rounded-xl hover:scale-105 transition-all shine">
-          Testar grátis <i class="fa-solid fa-arrow-right text-xs"></i>
+        <a href="#preco" data-cta="checkout" class="hidden sm:inline-flex items-center gap-2 bg-lime text-ink font-display font-600 text-sm px-5 py-2.5 rounded-xl hover:scale-105 transition-all shine">
+          Adquirir acesso <i class="fa-solid fa-arrow-right text-xs"></i>
         </a>
         <a href="#preco" class="sm:hidden text-limeDeep text-2xl" aria-label="Começar"><i class="fa-solid fa-bolt"></i></a>
       </nav>
@@ -615,29 +627,28 @@
               <p class="text-muted line-through font-display text-xl">R$ 97</p>
               <div class="flex items-end gap-3 flex-wrap">
                 <div class="flex items-end gap-1">
-                  <span class="font-display font-700 text-5xl sm:text-6xl text-ink">R$&nbsp;49<span class="text-3xl">,90</span></span>
-                  <span class="text-muted mb-2">/mês</span>
+                  <span class="font-display font-700 text-5xl sm:text-6xl text-ink">R$&nbsp;47</span>
                 </div>
-                <span class="mb-2 inline-flex items-center gap-1 bg-lime text-ink font-700 text-xs rounded-full px-3 py-1.5">economize 48%</span>
+                <span class="mb-2 inline-flex items-center gap-1 bg-lime text-ink font-700 text-xs rounded-full px-3 py-1.5">pagamento único</span>
               </div>
             </div>
-            <p class="text-sm text-muted mt-1">Menos de <strong class="text-ink">R$1,66 por dia.</strong> Cancele quando quiser.</p>
+            <p class="text-sm text-muted mt-1">Uma vez só. <strong class="text-ink">Acesso vitalício.</strong> Sem mensalidade.</p>
 
             <!-- value stack -->
             <ul class="mt-6 space-y-3 text-ink/90">
               <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-1"></i> Otimizador de Caminho Crítico — roteiro mais rápido em segundos</li>
-              <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-1"></i> Comando de voz + sensor: avance sem tocar na tela</li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-1"></i> Comando de voz: avance etapa por etapa sem tocar na tela</li>
               <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-1"></i> Lista de compras automática + planejador semanal</li>
               <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-1"></i> Novas receitas e atualizações sempre incluídas</li>
             </ul>
 
-            <a href="#" class="cta-pulse shine mt-7 w-full inline-flex items-center justify-center gap-3 bg-lime text-ink font-display font-700 text-lg px-8 py-4 rounded-2xl hover:scale-[1.02] transition-all">
-              <i class="fa-solid fa-bolt"></i> Começar 7 dias grátis
+            <a href="#" data-cta="checkout" class="cta-pulse shine mt-7 w-full inline-flex items-center justify-center gap-3 bg-lime text-ink font-display font-700 text-lg px-8 py-4 rounded-2xl hover:scale-[1.02] transition-all">
+              <i class="fa-solid fa-bolt"></i> Adquirir acesso agora
             </a>
             <div class="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-muted">
-              <span><i class="fa-solid fa-lock text-limeDeep mr-1"></i> Sem cartão para começar</span>
+              <span><i class="fa-solid fa-bolt text-limeDeep mr-1"></i> Pagamento único</span>
               <span><i class="fa-solid fa-shield-heart text-limeDeep mr-1"></i> Garantia de 30 dias</span>
-              <span><i class="fa-solid fa-xmark text-limeDeep mr-1"></i> Cancele em 1 clique</span>
+              <span><i class="fa-solid fa-infinity text-limeDeep mr-1"></i> Acesso vitalício</span>
             </div>
           </div>
         </div>
@@ -697,7 +708,7 @@
             <span class="font-display font-600 text-base sm:text-lg text-ink">"E se eu não gostar?"</span>
             <i class="faq-chevron fa-solid fa-chevron-down text-limeDeep"></i>
           </button>
-          <div class="faq-body"><p class="px-5 sm:px-6 pb-6 text-muted leading-relaxed">Você começa com <strong class="text-ink">7 dias grátis e sem cartão</strong>. E ainda tem a garantia de 30 dias: se não cronometrar economia de tempo, devolvemos 100% do valor. O risco é todo nosso.</p></div>
+          <div class="faq-body"><p class="px-5 sm:px-6 pb-6 text-muted leading-relaxed">Tem a <strong class="text-ink">garantia de 30 dias</strong>: teste em preparos reais e se não cronometrar uma economia clara de tempo, devolvemos 100% do valor — sem perguntas. O risco é todo nosso.</p></div>
         </div>
       </div>
     </div>
@@ -715,14 +726,17 @@
       </h2>
       <p class="text-muted mt-6 text-base sm:text-lg max-w-xl mx-auto">
         Monte o cardápio, deixe o Atteek montar o roteiro e cronometre a diferença já no primeiro preparo.
-        7 dias grátis, sem cartão.
+        Pagamento único. Acesso vitalício.
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#preco" class="cta-pulse shine inline-flex items-center justify-center gap-3 bg-lime text-ink font-display font-700 text-lg px-10 py-5 rounded-2xl hover:scale-105 transition-all">
+        <a href="#" data-cta="checkout" class="cta-pulse shine inline-flex items-center justify-center gap-3 bg-lime text-ink font-display font-700 text-lg px-10 py-5 rounded-2xl hover:scale-105 transition-all">
           <i class="fa-solid fa-bolt"></i> Quero meu domingo de volta
         </a>
+        <a href="#" data-cta="app-login" class="inline-flex items-center gap-2 text-muted text-sm hover:text-ink transition-colors">
+          Já tenho conta <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
       </div>
-      <p class="text-sm text-muted mt-5"><i class="fa-solid fa-lock text-limeDeep mr-1"></i> 7 dias grátis · sem cartão · garantia de 30 dias</p>
+      <p class="text-sm text-muted mt-5"><i class="fa-solid fa-bolt text-limeDeep mr-1"></i> R$ 47 uma vez · sem mensalidade · garantia de 30 dias</p>
     </div>
   </section>
 
@@ -785,6 +799,27 @@
     window.addEventListener('scroll', function () {
       if (window.scrollY > 20) header.classList.add('shadow-soft'); else header.classList.remove('shadow-soft');
     });
+
+    // ── Aplica URLs do window.ATTEEK aos botões de CTA ──────────────────
+    (function () {
+      var cfg = window.ATTEEK || {};
+      // Checkout (Kiwify)
+      document.querySelectorAll('[data-cta="checkout"]').forEach(function (el) {
+        if (cfg.checkout) {
+          el.setAttribute('href', cfg.checkout);
+          el.setAttribute('target', '_blank');
+          el.setAttribute('rel', 'noopener noreferrer');
+        }
+      });
+      // Login no app
+      document.querySelectorAll('[data-cta="app-login"]').forEach(function (el) {
+        if (cfg.app) {
+          el.setAttribute('href', cfg.app + '/login');
+          el.setAttribute('target', '_blank');
+          el.setAttribute('rel', 'noopener noreferrer');
+        }
+      });
+    })();
   </script>
 </body>
 </html>
