@@ -15,6 +15,26 @@
   <title>Atteek — Toda a sua semana de marmitas, na metade do tempo</title>
   <meta name="description" content="O Atteek monta o roteiro mais rápido possível para todas as suas receitas ao mesmo tempo e te guia por voz, sem tocar na tela. Cozinhe a semana de marmitas em metade do tempo e recupere o seu fim de semana." />
 
+  <!-- ═══════════════════════════════════════════════════
+       META PIXEL — 1894373907950531
+       Eventos: PageView (automático), Lead (preencheu form),
+                InitiateCheckout (foi para Kiwify),
+                Purchase (configurar no painel Kiwify → Pixels)
+  ═══════════════════════════════════════════════════ -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1894373907950531');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1894373907950531&ev=PageView&noscript=1" />
+  </noscript>
+
   <!-- Favicon / ícone do app = mascote Atteek -->
   <link rel="icon" type="image/png" href="atteek-mascot.png" />
   <link rel="apple-touch-icon" href="atteek-mascot.png" />
@@ -26,18 +46,6 @@
 
   <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-  <!-- ============================================================
-       CONFIGURE AQUI — mude apenas neste bloco
-       ============================================================ -->
-  <script>
-    window.ATTEEK = {
-      // URL do checkout no Kiwify (Produtos → link de vendas)
-      checkout: 'https://pay.kiwify.com.br/7HJGBvf',
-      // URL do app
-      app: 'https://dev-app-atteek.vercel.app',
-    };
-  </script>
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -145,23 +153,6 @@
     .eq span:nth-child(4){animation-delay:.45s} .eq span:nth-child(5){animation-delay:.6s}
 
     ::selection { background:#8BD11F; color:#16352E; }
-
-    /* ── Phone demo cycling ── */
-    .phone-screen {
-      position:absolute; top:0; left:0; right:0; bottom:0;
-      opacity:0; transform:translateY(10px);
-      transition:opacity .5s ease, transform .5s ease;
-      overflow:hidden; background:#F4F6F8;
-    }
-    .phone-screen.ps-active { opacity:1; transform:translateY(0); }
-    .ps-step { opacity:.35; transition:opacity .35s, transform .35s; transform:translateX(6px); }
-    .ps-step.ps-active { opacity:1; transform:translateX(0); }
-    .ps-dot { width:7px; height:7px; border-radius:50%; background:#C8D6C5; transition:all .35s; cursor:pointer; }
-    .ps-dot.ps-active { background:#1C7A63; width:22px; border-radius:4px; }
-    @keyframes ps-eq { 0%,100%{height:4px} 40%{height:13px} 70%{height:7px} }
-    .ps-eqbar { width:3px; background:#1C7A63; border-radius:2px; display:inline-block; vertical-align:bottom; animation:ps-eq .9s ease-in-out infinite; }
-    .ps-eqbar:nth-child(2){animation-delay:.18s} .ps-eqbar:nth-child(3){animation-delay:.36s}
-    .ps-eqbar:nth-child(4){animation-delay:.54s} .ps-eqbar:nth-child(5){animation-delay:.72s}
   </style>
 </head>
 
@@ -176,15 +167,14 @@
           <span class="font-display font-700 text-xl tracking-tight text-ink">atteek</span>
         </a>
         <div class="hidden md:flex items-center gap-7 text-sm text-muted">
-          <a href="#demo" class="hover:text-ink transition-colors">Demo</a>
           <a href="#contraste" class="hover:text-ink transition-colors">Antes/depois</a>
           <a href="#solucao" class="hover:text-ink transition-colors">Como funciona</a>
           <a href="#prova" class="hover:text-ink transition-colors">Resultados</a>
           <a href="#preco" class="hover:text-ink transition-colors">Preço</a>
           <a href="#faq" class="hover:text-ink transition-colors">FAQ</a>
         </div>
-        <a href="#preco" data-cta="checkout" class="hidden sm:inline-flex items-center gap-2 bg-lime text-ink font-display font-600 text-sm px-5 py-2.5 rounded-xl hover:scale-105 transition-all shine">
-          Adquirir acesso <i class="fa-solid fa-arrow-right text-xs"></i>
+        <a href="#preco" class="hidden sm:inline-flex items-center gap-2 bg-lime text-ink font-display font-600 text-sm px-5 py-2.5 rounded-xl hover:scale-105 transition-all shine">
+          Testar grátis <i class="fa-solid fa-arrow-right text-xs"></i>
         </a>
         <a href="#preco" class="sm:hidden text-limeDeep text-2xl" aria-label="Começar"><i class="fa-solid fa-bolt"></i></a>
       </nav>
@@ -210,7 +200,9 @@
         </h1>
 
         <p class="mt-5 text-base sm:text-lg text-muted max-w-xl leading-relaxed">
-          Você já cozinha em paralelo. O que ainda rouba tempo é a <strong class="text-ink">ordem errada, a janela de espera perdida e o cronômetro esquecido.</strong> O Atteek monta o roteiro mais rápido possível e deixa você avançar cada etapa <strong class="text-ink">por voz, sem tocar na tela.</strong> Você só cozinha.
+          O Atteek monta o <strong class="text-ink">roteiro mais rápido possível</strong> para todas as
+          suas receitas ao mesmo tempo e te guia <strong class="text-ink">por voz, sem tocar na tela.</strong>
+          Pare de cozinhar uma de cada vez — e recupere o seu domingo.
         </p>
 
         <!-- destaque comando de voz -->
@@ -319,379 +311,7 @@
     </div>
   </section>
 
-  <!-- ============================ DEMO ANIMADO DO APP ============================ -->
-  <section id="demo" class="relative py-20 sm:py-28 overflow-hidden">
-    <div class="aurora bg-lime/20 w-96 h-96 -bottom-16 -right-20"></div>
-    <div class="aurora bg-mustard/15 w-80 h-80 -top-10 -left-16"></div>
-
-    <div class="relative z-10 max-w-5xl mx-auto px-5 sm:px-8">
-      <!-- heading -->
-      <div class="text-center reveal mb-12">
-        <span class="text-teal font-600 text-sm tracking-widest uppercase">O app em ação</span>
-        <h2 class="font-display font-700 text-3xl sm:text-5xl mt-3 leading-tight text-ink">
-          Do cardápio à cozinha<br class="hidden sm:block"> em segundos.
-        </h2>
-        <p class="text-muted mt-4 text-base max-w-lg mx-auto leading-relaxed">
-          Escolha as receitas, receba o roteiro otimizado e cozinhe guiado etapa por etapa — com as mãos livres.
-        </p>
-      </div>
-
-      <div class="reveal flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16">
-
-        <!-- ── Phone frame ── -->
-        <div class="relative flex-shrink-0">
-          <div class="absolute inset-[-24px] bg-lime/20 blur-3xl rounded-full pointer-events-none"></div>
-          <!-- outer shell -->
-          <div style="position:relative;width:264px;height:536px;background:#111;border-radius:44px;padding:10px;box-shadow:0 40px 80px rgba(0,0,0,0.22),0 0 0 1px rgba(255,255,255,0.07) inset">
-            <!-- physical buttons -->
-            <div style="position:absolute;left:-3px;top:100px;width:3px;height:32px;background:#2a2a2a;border-radius:2px 0 0 2px"></div>
-            <div style="position:absolute;left:-3px;top:146px;width:3px;height:60px;background:#2a2a2a;border-radius:2px 0 0 2px"></div>
-            <div style="position:absolute;right:-3px;top:124px;width:3px;height:74px;background:#2a2a2a;border-radius:0 2px 2px 0"></div>
-            <!-- inner screen -->
-            <div style="width:100%;height:100%;background:#F4F6F8;border-radius:36px;overflow:hidden;position:relative">
-              <!-- dynamic island -->
-              <div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);width:88px;height:24px;background:#111;border-radius:14px;z-index:20"></div>
-              <!-- status bar -->
-              <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 18px 2px;font-size:10px;font-weight:600;color:#6B7280;position:relative;z-index:5;font-family:'Inter',sans-serif">
-                <span>9:41</span>
-                <div style="display:flex;align-items:center;gap:3px">
-                  <i class="fa-solid fa-signal" style="font-size:8px"></i>
-                  <i class="fa-solid fa-wifi" style="font-size:8px"></i>
-                  <i class="fa-solid fa-battery-three-quarters" style="font-size:8px"></i>
-                </div>
-              </div>
-              <!-- screens container -->
-              <div id="ps-container" style="position:relative;height:calc(100% - 24px)">
-
-                <!-- ═══ Tela 1: Receitas ═══ -->
-                <div class="phone-screen ps-active">
-                  <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 14px 7px;border-bottom:1px solid #E5E7EB;background:#fff">
-                    <span style="font-weight:700;font-size:15px;color:#111827;font-family:'Space Grotesk',sans-serif">Receitas</span>
-                    <i class="fa-solid fa-magnifying-glass" style="color:#6B7280;font-size:13px"></i>
-                  </div>
-                  <div style="padding:8px 10px 4px">
-                    <div style="background:#fff;border:1px solid #E5E7EB;border-radius:14px;padding:7px 10px;display:flex;align-items:center;gap:6px">
-                      <i class="fa-solid fa-magnifying-glass" style="color:#9CA3AF;font-size:10px"></i>
-                      <span style="color:#9CA3AF;font-size:12px;font-family:'Inter',sans-serif">Buscar receita...</span>
-                    </div>
-                  </div>
-                  <div style="padding:2px 10px 0;font-family:'Inter',sans-serif">
-                    <div style="display:flex;border-radius:16px;overflow:hidden;background:#fff;border:1px solid #E5E7EB;margin-bottom:7px;height:82px">
-                      <div style="flex:1;padding:10px">
-                        <p style="font-size:11px;font-weight:700;color:#111827;line-height:1.3;margin-bottom:4px">Frango Grelhado com Legumes</p>
-                        <p style="font-size:11px;color:#6B7280">⏱ 1h 12min</p>
-                        <p style="font-size:10px;color:#6B7280;margin-top:2px">🤍 favoritar</p>
-                      </div>
-                      <div style="width:66px;background:#FEF9EE;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                        <span style="font-size:28px;opacity:0.5">🍗</span>
-                      </div>
-                    </div>
-                    <div style="display:flex;border-radius:16px;overflow:hidden;background:#fff;border:1px solid #E5E7EB;margin-bottom:7px;height:82px">
-                      <div style="flex:1;padding:10px">
-                        <p style="font-size:11px;font-weight:700;color:#111827;line-height:1.3;margin-bottom:4px">Arroz Integral + Feijão</p>
-                        <p style="font-size:11px;color:#6B7280">⏱ 48min</p>
-                        <p style="font-size:10px;color:#1C7A63;margin-top:2px">❤️ favorito</p>
-                      </div>
-                      <div style="width:66px;background:#FEF9EE;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                        <span style="font-size:28px;opacity:0.5">🍚</span>
-                      </div>
-                    </div>
-                    <div style="display:flex;border-radius:16px;overflow:hidden;background:#fff;border:1px solid #E5E7EB;height:82px">
-                      <div style="flex:1;padding:10px">
-                        <p style="font-size:11px;font-weight:700;color:#111827;line-height:1.3;margin-bottom:4px">Legumes Assados no Forno</p>
-                        <p style="font-size:11px;color:#6B7280">⏱ 35min</p>
-                        <p style="font-size:10px;color:#6B7280;margin-top:2px">🤍 favoritar</p>
-                      </div>
-                      <div style="width:66px;background:#FEF9EE;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                        <span style="font-size:28px;opacity:0.5">🥦</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 10px 14px;background:linear-gradient(to top,#F4F6F8 70%,transparent)">
-                    <div style="background:#C8FF00;border-radius:14px;padding:12px;text-align:center;font-weight:700;font-size:13px;color:#1a1a1a;font-family:'Space Grotesk',sans-serif">
-                      <i class="fa-solid fa-bolt"></i> Iniciar com 3 receitas →
-                    </div>
-                  </div>
-                </div>
-
-                <!-- ═══ Tela 2: Plano (Gantt) ═══ -->
-                <div class="phone-screen">
-                  <div style="display:flex;align-items:center;gap:10px;padding:8px 14px 7px;border-bottom:1px solid #E5E7EB;background:#fff">
-                    <i class="fa-solid fa-arrow-left" style="color:#6B7280;font-size:12px"></i>
-                    <span style="font-weight:700;font-size:15px;color:#111827;font-family:'Space Grotesk',sans-serif">Plano de Preparo</span>
-                  </div>
-                  <div style="padding:10px 10px 0;font-family:'Inter',sans-serif">
-                    <div style="display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid #E5E7EB;border-radius:14px;padding:10px 12px;margin-bottom:8px">
-                      <span style="font-size:11px;color:#6B7280">3 receitas · 14 marmitas</span>
-                      <span style="font-size:13px;font-weight:700;color:#1C7A63;font-family:'Space Grotesk',sans-serif">1h 12min ⚡</span>
-                    </div>
-                    <div style="background:#fff;border:1px solid #E5E7EB;border-radius:14px;padding:12px;margin-bottom:8px">
-                      <p style="font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:#6B7280;font-weight:700;margin-bottom:8px">Linha do tempo otimizada</p>
-                      <div style="display:flex;justify-content:space-between;padding:0 2px;margin-bottom:5px">
-                        <span style="font-size:8px;color:#9CA3AF">0</span>
-                        <span style="font-size:8px;color:#9CA3AF">20min</span>
-                        <span style="font-size:8px;color:#9CA3AF">40min</span>
-                        <span style="font-size:8px;color:#9CA3AF">1h 12</span>
-                      </div>
-                      <div style="margin-bottom:8px">
-                        <p style="font-size:10px;font-weight:600;color:#111827;margin-bottom:3px">Frango</p>
-                        <div style="height:12px;border-radius:6px;background:#F9F5EE;overflow:hidden;position:relative">
-                          <div style="position:absolute;left:0;width:65%;height:100%;background:linear-gradient(90deg,#FF6B35,#FF8C5A);border-radius:6px"></div>
-                        </div>
-                      </div>
-                      <div style="margin-bottom:8px">
-                        <p style="font-size:10px;font-weight:600;color:#111827;margin-bottom:3px">Arroz</p>
-                        <div style="height:12px;border-radius:6px;background:#F9F5EE;overflow:hidden;position:relative">
-                          <div style="position:absolute;left:18%;width:50%;height:100%;background:#0EA5E9;border-radius:6px"></div>
-                        </div>
-                      </div>
-                      <div>
-                        <p style="font-size:10px;font-weight:600;color:#111827;margin-bottom:3px">Legumes</p>
-                        <div style="height:12px;border-radius:6px;background:#F9F5EE;overflow:hidden;position:relative">
-                          <div style="position:absolute;left:26%;width:36%;height:100%;background:#1C7A63;border-radius:6px"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div style="background:#C8FF00;border-radius:12px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between">
-                      <span style="font-size:11px;font-weight:700;color:#1a1a1a">Você economiza</span>
-                      <span style="font-size:14px;font-weight:700;color:#1C7A63;font-family:'Space Grotesk',sans-serif">−47% de tempo</span>
-                    </div>
-                  </div>
-                  <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 10px 14px;background:linear-gradient(to top,#F4F6F8 70%,transparent)">
-                    <div style="background:#111827;border-radius:14px;padding:12px;text-align:center;font-weight:700;font-size:13px;color:#C8FF00;font-family:'Space Grotesk',sans-serif">
-                      Cozinhar agora →
-                    </div>
-                  </div>
-                </div>
-
-                <!-- ═══ Tela 3: Cozinhando ═══ -->
-                <div class="phone-screen">
-                  <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 14px 6px;border-bottom:1px solid #E5E7EB;background:#fff">
-                    <div style="font-family:'Space Grotesk',sans-serif">
-                      <p style="font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:#6B7280;font-weight:600;margin-bottom:1px">Preparo · ao vivo</p>
-                      <p style="font-size:17px;font-weight:700;font-family:monospace;color:#111827;line-height:1">01:12:40</p>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:4px">
-                      <span style="width:6px;height:6px;background:#C8FF00;border-radius:50%;display:inline-block"></span>
-                      <span style="font-size:10px;color:#1C7A63;font-weight:600;font-family:'Inter',sans-serif">3 em paralelo</span>
-                    </div>
-                  </div>
-                  <div style="padding:8px 10px 0;font-family:'Inter',sans-serif">
-                    <div style="background:#fff;border:1px solid #E5E7EB;border-radius:16px;padding:12px;margin-bottom:8px">
-                      <div style="display:flex;gap:5px;margin-bottom:8px">
-                        <span style="background:#FF6B35;color:#fff;font-size:9px;font-weight:700;padding:3px 7px;border-radius:20px;text-transform:uppercase">Ação agora</span>
-                        <span style="background:#FBBF24;color:#111827;font-size:9px;font-weight:600;padding:3px 7px;border-radius:20px">Frango</span>
-                      </div>
-                      <p style="font-size:14px;font-weight:700;color:#111827;line-height:1.3">Selar o frango<br>na frigideira</p>
-                      <div style="margin-top:8px">
-                        <div style="display:flex;justify-content:space-between;margin-bottom:3px">
-                          <span style="font-size:9px;color:#6B7280">Etapa 4 de 8</span>
-                          <span style="font-size:10px;font-weight:700;font-family:monospace;color:#FF6B35">3:24</span>
-                        </div>
-                        <div style="height:5px;background:#E5E7EB;border-radius:3px;overflow:hidden">
-                          <div style="height:100%;width:60%;background:linear-gradient(90deg,#FF6B35,#FF8C5A);border-radius:3px"></div>
-                        </div>
-                      </div>
-                      <div style="margin-top:8px;background:#F4F6F8;border:1px solid rgba(200,255,0,0.45);border-radius:10px;padding:7px 10px;display:flex;align-items:center;gap:7px">
-                        <div style="width:26px;height:26px;background:#C8FF00;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px">🎙️</div>
-                        <div style="display:flex;align-items:flex-end;gap:2px;height:14px">
-                          <div class="ps-eqbar" style="height:5px"></div>
-                          <div class="ps-eqbar" style="height:12px"></div>
-                          <div class="ps-eqbar" style="height:7px"></div>
-                          <div class="ps-eqbar" style="height:11px"></div>
-                          <div class="ps-eqbar" style="height:5px"></div>
-                        </div>
-                        <span style="font-size:10px;color:#6B7280">diga <strong style="color:#1C7A63">"próximo"</strong> 🎙️</span>
-                      </div>
-                    </div>
-                    <p style="font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:#0EA5E9;font-weight:700;margin-bottom:5px">⏳ Em paralelo, sem você fazer nada</p>
-                    <div style="display:flex;flex-direction:column;gap:5px">
-                      <div style="display:flex;align-items:center;background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:7px 9px">
-                        <span style="margin-right:6px;font-size:12px">🍚</span>
-                        <span style="font-size:11px;flex:1;color:#111827">Arroz cozinhando</span>
-                        <span style="font-size:10px;font-family:monospace;color:#0EA5E9;font-weight:700">14:20</span>
-                      </div>
-                      <div style="display:flex;align-items:center;background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:7px 9px">
-                        <span style="margin-right:6px;font-size:12px">🥦</span>
-                        <span style="font-size:11px;flex:1;color:#111827">Legumes no forno</span>
-                        <span style="font-size:10px;font-family:monospace;color:#0EA5E9;font-weight:700">22:05</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- ═══ Tela 4: Resultado ═══ -->
-                <div class="phone-screen">
-                  <div style="padding:14px 12px;height:100%;display:flex;flex-direction:column;align-items:center;font-family:'Inter',sans-serif;box-sizing:border-box">
-                    <div style="text-align:center;margin-bottom:10px">
-                      <p style="font-size:34px;line-height:1;margin-bottom:4px">🎉</p>
-                      <p style="font-size:16px;font-weight:700;color:#111827;font-family:'Space Grotesk',sans-serif">Preparo concluído!</p>
-                      <p style="font-size:11px;color:#6B7280;margin-top:2px">3 receitas · 14 marmitas</p>
-                    </div>
-                    <div style="width:100%;display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px">
-                      <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:9px">
-                        <p style="font-size:9px;color:#6B7280;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px">Tempo total</p>
-                        <p style="font-size:14px;font-weight:700;color:#111827;font-family:monospace">1h 12min</p>
-                      </div>
-                      <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:9px">
-                        <p style="font-size:9px;color:#6B7280;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px">Economizado</p>
-                        <p style="font-size:14px;font-weight:700;color:#1C7A63;font-family:monospace">−1h 06min</p>
-                      </div>
-                      <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:9px">
-                        <p style="font-size:9px;color:#6B7280;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px">Eficiência</p>
-                        <p style="font-size:14px;font-weight:700;color:#111827">47% <span style="color:#1C7A63;font-size:11px">⚡</span></p>
-                      </div>
-                      <div style="background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:9px">
-                        <p style="font-size:9px;color:#6B7280;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px">Marmitas</p>
-                        <p style="font-size:14px;font-weight:700;color:#111827">14 🍱</p>
-                      </div>
-                    </div>
-                    <div style="width:100%;background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:10px;margin-bottom:7px">
-                      <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-                        <span style="font-size:10px;color:#6B7280">Sem otimização</span>
-                        <span style="font-size:10px;color:#6B7280">2h 18min</span>
-                      </div>
-                      <div style="height:6px;background:#E5E7EB;border-radius:3px;margin-bottom:6px"></div>
-                      <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-                        <span style="font-size:10px;font-weight:700;color:#1C7A63">Com Atteek ⚡</span>
-                        <span style="font-size:10px;font-weight:700;color:#1C7A63">1h 12min</span>
-                      </div>
-                      <div style="height:6px;border-radius:3px;overflow:hidden">
-                        <div style="width:52%;height:100%;background:linear-gradient(90deg,#1C7A63,#C8FF00);border-radius:3px"></div>
-                      </div>
-                    </div>
-                    <div style="width:100%;background:#C8FF00;border-radius:12px;padding:11px;text-align:center;font-weight:700;font-size:13px;color:#1a1a1a;font-family:'Space Grotesk',sans-serif">
-                      Ver histórico completo →
-                    </div>
-                  </div>
-                </div>
-
-              </div><!-- /ps-container -->
-            </div><!-- /inner screen -->
-          </div><!-- /outer phone -->
-        </div><!-- /relative phone wrapper -->
-
-        <!-- ── Step labels (desktop) ── -->
-        <div class="hidden lg:flex flex-col gap-6 max-w-[260px]">
-          <div class="ps-step ps-active cursor-pointer" data-ps-step="0">
-            <div class="flex items-start gap-3">
-              <div class="w-8 h-8 rounded-xl bg-lime flex items-center justify-center flex-shrink-0 text-ink font-700 text-sm">1</div>
-              <div>
-                <p class="font-display font-600 text-ink text-base">Escolha as receitas</p>
-                <p class="text-muted text-sm mt-0.5 leading-relaxed">Catálogo completo com tempo otimizado de cada receita.</p>
-              </div>
-            </div>
-          </div>
-          <div class="ps-step cursor-pointer" data-ps-step="1">
-            <div class="flex items-start gap-3">
-              <div class="w-8 h-8 rounded-xl bg-lime/25 flex items-center justify-center flex-shrink-0 text-limeDeep font-700 text-sm">2</div>
-              <div>
-                <p class="font-display font-600 text-ink text-base">Roteiro automático</p>
-                <p class="text-muted text-sm mt-0.5 leading-relaxed">O app monta o Gantt em segundos, encaixando tudo em paralelo.</p>
-              </div>
-            </div>
-          </div>
-          <div class="ps-step cursor-pointer" data-ps-step="2">
-            <div class="flex items-start gap-3">
-              <div class="w-8 h-8 rounded-xl bg-lime/25 flex items-center justify-center flex-shrink-0 text-limeDeep font-700 text-sm">3</div>
-              <div>
-                <p class="font-display font-600 text-ink text-base">Cozinhe por voz</p>
-                <p class="text-muted text-sm mt-0.5 leading-relaxed">Diga "próximo" e avance etapas sem tocar na tela.</p>
-              </div>
-            </div>
-          </div>
-          <div class="ps-step cursor-pointer" data-ps-step="3">
-            <div class="flex items-start gap-3">
-              <div class="w-8 h-8 rounded-xl bg-lime/25 flex items-center justify-center flex-shrink-0 text-limeDeep font-700 text-sm">4</div>
-              <div>
-                <p class="font-display font-600 text-ink text-base">Veja a evolução</p>
-                <p class="text-muted text-sm mt-0.5 leading-relaxed">Histórico completo: quanto tempo você economizou em cada preparo.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /flex container -->
-
-      <!-- progress dots (visible on mobile) -->
-      <div class="flex justify-center items-center gap-2 mt-8 reveal">
-        <div class="ps-dot ps-active" data-ps-dot="0"></div>
-        <div class="ps-dot" data-ps-dot="1"></div>
-        <div class="ps-dot" data-ps-dot="2"></div>
-        <div class="ps-dot" data-ps-dot="3"></div>
-      </div>
-
-    </div>
-  </section>
-
   <!-- ============================ CONTRASTE / GANTT ANTES x DEPOIS ============================ -->
-  <section id="contraste" class="relative py-20 sm:py-28 overflow-hidden">
-    <div class="aurora bg-lime/25 w-96 h-96 top-10 -right-24"></div>
-    <div class="relative z-10 max-w-5xl mx-auto px-5 sm:px-8">
-      <div class="text-center max-w-2xl mx-auto reveal">
-        <span class="text-teal font-600 text-sm tracking-widest uppercase">A diferença que você cronometra</span>
-        <h2 class="font-display font-700 text-3xl sm:text-5xl mt-3 leading-tight text-ink">
-          Mesma comida.<br class="hidden sm:block" /> <span class="text-gradient">Metade do tempo.</span>
-        </h2>
-        <p class="text-muted mt-5 text-base sm:text-lg">
-          Você já cozinha em paralelo — o problema é o que fica invisível: a janela de espera que você perde, a ordem errada que cria tempo morto, o cronômetro que esquece. O Atteek elimina isso:
-        </p>
-      </div>
-
-      <!-- ANTES -->
-      <div class="mt-12 card rounded-3xl p-6 sm:p-8 reveal">
-        <div class="flex items-center justify-between mb-5">
-          <div class="flex items-center gap-2">
-            <span class="w-8 h-8 rounded-lg bg-sand flex items-center justify-center text-muted"><i class="fa-solid fa-person-digging text-sm"></i></span>
-            <p class="font-display font-600 text-ink">Sem roteiro otimizado <span class="text-muted font-sans font-400 text-sm">(como provavelmente é hoje)</span></p>
-          </div>
-          <p class="font-display font-700 text-xl text-muted">2h 18min</p>
-        </div>
-        <!-- timeline com lacunas representando tempo morto -->
-        <div class="flex h-9 rounded-xl overflow-hidden border border-line text-[11px] font-600 text-ink/80">
-          <div class="bg-mustard/45 flex items-center justify-center" style="width:26%">Arroz</div>
-          <div class="bg-brown/30 flex items-center justify-center border-l border-white/60" style="width:32%">Frango</div>
-          <div class="bg-teal/25 flex items-center justify-center border-l border-white/60" style="width:24%">Legumes</div>
-          <div class="bg-mustard/35 flex items-center justify-center border-l border-white/60" style="width:18%">Feijão</div>
-        </div>
-        <p class="mt-3 text-sm text-muted"><i class="fa-solid fa-hourglass-half text-mustard mr-1"></i> Tempo morto entre etapas: você decide na hora, esquece o cronômetro, espera sem aproveitar a janela livre.</p>
-      </div>
-
-      <!-- DEPOIS -->
-      <div class="mt-5 card rounded-3xl p-6 sm:p-8 ring-2 ring-lime/60 relative overflow-hidden reveal" style="transition-delay:.06s">
-        <div class="aurora bg-lime/20 w-64 h-64 -bottom-24 -right-12"></div>
-        <div class="relative z-10">
-          <div class="flex items-center justify-between mb-5">
-            <div class="flex items-center gap-2">
-              <span class="w-8 h-8 rounded-lg bg-lime/20 flex items-center justify-center text-limeDeep"><i class="fa-solid fa-wand-magic-sparkles text-sm"></i></span>
-              <p class="font-display font-700 text-ink">Com o Atteek <span class="text-limeDeep font-sans font-400 text-sm">(tudo em paralelo)</span></p>
-            </div>
-            <p class="font-display font-700 text-xl text-gradient">1h 12min</p>
-          </div>
-          <!-- timeline paralela: 4 trilhas sobrepostas ocupando ~52% -->
-          <div class="space-y-2">
-            <div class="relative h-7 rounded-lg bg-sand overflow-hidden">
-              <div class="absolute inset-y-0 left-0 rounded-lg bg-mustard/60 flex items-center px-2 text-[11px] font-600 text-ink" style="width:22%">Arroz</div>
-            </div>
-            <div class="relative h-7 rounded-lg bg-sand overflow-hidden">
-              <div class="absolute inset-y-0 rounded-lg bg-brown/45 flex items-center px-2 text-[11px] font-600 text-ink" style="left:0%;width:32%">Frango</div>
-            </div>
-            <div class="relative h-7 rounded-lg bg-sand overflow-hidden">
-              <div class="absolute inset-y-0 rounded-lg bg-teal/45 flex items-center px-2 text-[11px] font-600 text-ink" style="left:18%;width:30%">Legumes</div>
-            </div>
-            <div class="relative h-7 rounded-lg bg-sand overflow-hidden">
-              <div class="absolute inset-y-0 rounded-lg bg-mustard/50 flex items-center px-2 text-[11px] font-600 text-ink" style="left:6%;width:20%">Feijão</div>
-            </div>
-          </div>
-          <div class="mt-4 flex flex-wrap items-center gap-3">
-            <span class="inline-flex items-center gap-2 bg-lime text-ink font-700 text-sm rounded-full px-4 py-1.5"><i class="fa-solid fa-bolt"></i> −47% de tempo</span>
-            <span class="text-sm text-ink">Você termina <strong class="text-limeDeep">1h06 antes</strong> — e ganha a tarde de volta.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ============================ DOR / AGITAÇÃO ============================ -->
   <section id="dores" class="relative py-20 sm:py-28 bg-paper/60 border-y border-line overflow-hidden">
     <div class="aurora bg-mustard/30 w-96 h-96 top-20 -left-32"></div>
@@ -720,8 +340,8 @@
         </div>
         <div class="reveal card rounded-3xl p-7 hover:border-mustard/50 transition-all hover:-translate-y-1" style="transition-delay:.1s">
           <div class="w-12 h-12 rounded-2xl bg-mustard/15 flex items-center justify-center text-mustard text-xl mb-5"><i class="fa-solid fa-sack-dollar"></i></div>
-          <h3 class="font-display font-600 text-xl text-ink">Quando falha, vira delivery ou restaurante</h3>
-          <p class="text-muted mt-3 leading-relaxed">Cansou e não preparou? São R$ 50 por dia em delivery ou restaurante, dieta furada e a culpa de ter saído da linha. O oposto do que você quer.</p>
+          <h3 class="font-display font-600 text-xl text-ink">Quando falha, vira delivery</h3>
+          <p class="text-muted mt-3 leading-relaxed">Cansou e não preparou? São R$ 50 por dia em delivery, dieta furada e a culpa de ter saído da linha. O oposto do que você quer.</p>
         </div>
       </div>
 
@@ -774,8 +394,8 @@
         <div class="reveal md:col-span-2 card rounded-3xl p-7 sm:p-8 hover:border-teal/40 transition-all flex flex-col">
           <span class="w-11 h-11 rounded-2xl bg-teal/15 flex items-center justify-center text-teal text-xl mb-4"><i class="fa-solid fa-microphone-lines"></i></span>
           <h3 class="font-display font-600 text-xl text-ink">Avance só com a voz</h3>
-          <p class="text-muted mt-3 leading-relaxed flex-1">Mão suja de comida? Diga <span class="text-limeDeep font-600">"próximo"</span> e a próxima etapa aparece sozinha. Zero toques na tela — a palavra-chave é configurável.</p>
-          <div class="mt-5 inline-flex items-center gap-2 text-sm text-teal"><i class="fa-solid fa-microphone-lines"></i> Avance por voz, mãos completamente livres</div>
+          <p class="text-muted mt-3 leading-relaxed flex-1">Mão suja de comida? Diga <span class="text-limeDeep font-600">"próximo"</span> ou passe a mão sobre o sensor. A próxima etapa aparece sozinha. Zero toques.</p>
+          <div class="mt-5 inline-flex items-center gap-2 text-sm text-teal"><i class="fa-solid fa-hand-sparkles"></i> Voz + sensor de proximidade</div>
         </div>
 
         <div class="reveal md:col-span-2 card rounded-3xl p-7 sm:p-8 hover:border-teal/40 transition-all">
@@ -785,9 +405,9 @@
         </div>
 
         <div class="reveal md:col-span-2 card rounded-3xl p-7 sm:p-8 hover:border-teal/40 transition-all">
-          <span class="w-11 h-11 rounded-2xl bg-lime/20 flex items-center justify-center text-limeDeep text-xl mb-4"><i class="fa-solid fa-cart-shopping"></i></span>
-          <h3 class="font-display font-600 text-xl text-ink">Lista de compras pronta</h3>
-          <p class="text-muted mt-3 leading-relaxed">O Atteek consolida todos os ingredientes de todas as receitas em uma lista única, já somada e organizada. Toque para marcar o que já tem.</p>
+          <span class="w-11 h-11 rounded-2xl bg-mustard/15 flex items-center justify-center text-mustard text-xl mb-4"><i class="fa-solid fa-fire-burner"></i></span>
+          <h3 class="font-display font-600 text-xl text-ink">A SUA cozinha</h3>
+          <p class="text-muted mt-3 leading-relaxed">2 bocas ou 6? Tem airfryer, forno, panela de pressão? O plano é montado para os equipamentos reais da sua casa.</p>
         </div>
 
         <div class="reveal md:col-span-2 card rounded-3xl p-7 sm:p-8 hover:border-teal/40 transition-all">
@@ -848,7 +468,7 @@
               Você é do <span class="text-gradient">time da marmita.</span>
             </h2>
             <p class="text-muted mt-5 text-base sm:text-lg leading-relaxed">
-              Enquanto metade da empresa pede delivery ou vai ao restaurante, vocês se encontram na copa com a marmita pronta —
+              Enquanto metade da empresa pede delivery, vocês se encontram na copa com a marmita pronta —
               comendo melhor, gastando menos e trocando receita. O Atteek mantém esse hábito leve pra você
               <strong class="text-ink">nunca trocar de time.</strong>
             </p>
@@ -924,54 +544,43 @@
         </p>
       </div>
 
-      <div class="grid lg:grid-cols-5 gap-6 mt-12 items-stretch">
-        <!-- âncora: custo do problema -->
-        <div class="reveal lg:col-span-2 card rounded-3xl p-7 sm:p-8 flex flex-col justify-center">
-          <p class="font-display font-600 text-lg text-ink mb-5">Sem o Atteek, você já paga caro:</p>
-          <ul class="space-y-4 text-muted">
-            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-xmark text-mustard mt-1"></i><span><strong class="text-ink">~R$1.000/mês</strong> em delivery quando o preparo falha</span></li>
-            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-xmark text-mustard mt-1"></i><span><strong class="text-ink">12h+ por mês</strong> perdidas em panela parada</span></li>
-            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-xmark text-mustard mt-1"></i><span>Domingos exaustos e a dieta furando toda semana</span></li>
-          </ul>
+      <div class="grid lg:grid-cols-1 gap-6 mt-12 items-stretch">
+        <!-- card de preço (col única) -->
           <div class="mt-6 pt-6 border-t border-line text-sm text-muted">
-            O Atteek se paga <strong class="text-ink">no primeiro delivery que você não pede.</strong>
-          </div>
-        </div>
-
-        <!-- card de preço -->
-        <div class="reveal lg:col-span-3 card rounded-3xl p-7 sm:p-9 relative overflow-hidden ring-2 ring-lime/60 shadow-soft">
+        <div class="reveal card rounded-3xl p-7 sm:p-9 relative overflow-hidden ring-2 ring-lime/60 shadow-soft max-w-xl mx-auto w-full">
           <div class="aurora bg-lime/20 w-72 h-72 -top-24 -right-16"></div>
           <div class="relative z-10">
-            <div class="flex items-center justify-between flex-wrap gap-3">
-              <span class="inline-flex items-center gap-2 bg-mustard/20 text-brown font-600 text-xs rounded-full px-3 py-1.5"><i class="fa-solid fa-fire"></i> Preço de fundador · primeiros 500 marmiteiros</span>
-            </div>
+            <div class="flex items-center justify-between flex-wrap gap-3"></div>
 
-            <div class="mt-5">
-              <p class="text-muted line-through font-display text-xl">R$ 97</p>
-              <div class="flex items-end gap-3 flex-wrap">
+            <div class="mt-5 flex items-end gap-3">
+              <div>
+                <p class="text-muted line-through font-display text-xl">R$ 97</p>
                 <div class="flex items-end gap-1">
-                  <span class="font-display font-700 text-5xl sm:text-6xl text-ink">R$&nbsp;47</span>
+                  <span class="font-display font-700 text-5xl sm:text-6xl text-ink">R$ 47<span class="text-3xl">,90</span></span>
+                  <span class="text-muted mb-2">/mês</span>
                 </div>
-                <span class="mb-2 inline-flex items-center gap-1 bg-lime text-ink font-700 text-xs rounded-full px-3 py-1.5">pagamento único</span>
               </div>
+              <span class="mb-2 inline-flex items-center gap-1 bg-lime text-ink font-700 text-xs rounded-full px-3 py-1.5">economize 48%</span>
             </div>
-            <p class="text-sm text-muted mt-1">Uma vez só. <strong class="text-ink">Acesso vitalício.</strong> Sem mensalidade.</p>
+            <p class="text-sm text-muted mt-1">Menos de <strong class="text-ink">R$1,66 por dia.</strong> Cancele quando quiser.</p>
 
             <!-- value stack -->
             <ul class="mt-6 space-y-3 text-ink/90">
               <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-1"></i> Otimizador de Caminho Crítico — roteiro mais rápido em segundos</li>
-              <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-1"></i> Comando de voz: avance etapa por etapa sem tocar na tela</li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-1"></i> Comando de voz + sensor: avance sem tocar na tela</li>
               <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-1"></i> Lista de compras automática + planejador semanal</li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-1"></i> Porções e equipamentos da SUA cozinha</li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-1"></i> Histórico de recordes + comunidade de marmiteiros</li>
               <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-1"></i> Novas receitas e atualizações sempre incluídas</li>
             </ul>
 
-            <a href="#" data-cta="checkout" class="cta-pulse shine mt-7 w-full inline-flex items-center justify-center gap-3 bg-lime text-ink font-display font-700 text-lg px-8 py-4 rounded-2xl hover:scale-[1.02] transition-all">
-              <i class="fa-solid fa-bolt"></i> Adquirir acesso agora
-            </a>
+            <button id="btn-kiwify" type="button" class="cta-pulse shine mt-7 w-full inline-flex items-center justify-center gap-3 bg-lime text-ink font-display font-700 text-lg px-8 py-4 rounded-2xl hover:scale-[1.02] transition-all cursor-pointer">
+              <i class="fa-solid fa-lock-open"></i> Adquirir acesso agora
+            </button>
             <div class="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-muted">
-              <span><i class="fa-solid fa-bolt text-limeDeep mr-1"></i> Pagamento único</span>
+              <span><i class="fa-solid fa-lock text-limeDeep mr-1"></i> Sem cartão para começar</span>
               <span><i class="fa-solid fa-shield-heart text-limeDeep mr-1"></i> Garantia de 30 dias</span>
-              <span><i class="fa-solid fa-infinity text-limeDeep mr-1"></i> Acesso vitalício</span>
+              <span><i class="fa-solid fa-xmark text-limeDeep mr-1"></i> Cancele em 1 clique</span>
             </div>
           </div>
         </div>
@@ -1031,7 +640,7 @@
             <span class="font-display font-600 text-base sm:text-lg text-ink">"E se eu não gostar?"</span>
             <i class="faq-chevron fa-solid fa-chevron-down text-limeDeep"></i>
           </button>
-          <div class="faq-body"><p class="px-5 sm:px-6 pb-6 text-muted leading-relaxed">Tem a <strong class="text-ink">garantia de 30 dias</strong>: teste em preparos reais e se não cronometrar uma economia clara de tempo, devolvemos 100% do valor — sem perguntas. O risco é todo nosso.</p></div>
+          <div class="faq-body"><p class="px-5 sm:px-6 pb-6 text-muted leading-relaxed">Você começa com <strong class="text-ink">7 dias grátis e sem cartão</strong>. E ainda tem a garantia de 30 dias: se não cronometrar economia de tempo, devolvemos 100% do valor. O risco é todo nosso.</p></div>
         </div>
       </div>
     </div>
@@ -1049,17 +658,14 @@
       </h2>
       <p class="text-muted mt-6 text-base sm:text-lg max-w-xl mx-auto">
         Monte o cardápio, deixe o Atteek montar o roteiro e cronometre a diferença já no primeiro preparo.
-        Pagamento único. Acesso vitalício.
+        7 dias grátis, sem cartão.
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#" data-cta="checkout" class="cta-pulse shine inline-flex items-center justify-center gap-3 bg-lime text-ink font-display font-700 text-lg px-10 py-5 rounded-2xl hover:scale-105 transition-all">
+        <a href="#preco" class="cta-pulse shine inline-flex items-center justify-center gap-3 bg-lime text-ink font-display font-700 text-lg px-10 py-5 rounded-2xl hover:scale-105 transition-all">
           <i class="fa-solid fa-bolt"></i> Quero meu domingo de volta
         </a>
-        <a href="#" data-cta="app-login" class="inline-flex items-center gap-2 text-muted text-sm hover:text-ink transition-colors">
-          Já tenho conta <i class="fa-solid fa-arrow-right text-xs"></i>
-        </a>
       </div>
-      <p class="text-sm text-muted mt-5"><i class="fa-solid fa-bolt text-limeDeep mr-1"></i> R$ 47 uma vez · sem mensalidade · garantia de 30 dias</p>
+      <p class="text-sm text-muted mt-5"><i class="fa-solid fa-lock text-limeDeep mr-1"></i> 7 dias grátis · sem cartão · garantia de 30 dias</p>
     </div>
   </section>
 
@@ -1105,7 +711,145 @@
     </div>
   </footer>
 
+  <!-- ═══════════════════════════════════════════════════
+       POPUP DE CAPTURA DE LEAD
+  ═══════════════════════════════════════════════════ -->
+  <div id="lead-popup" class="hidden fixed inset-0 z-[999] items-center justify-center p-4" style="background:rgba(22,53,46,0.65);backdrop-filter:blur(6px);">
+    <div class="relative w-full max-w-md bg-white rounded-3xl shadow-softer overflow-hidden">
+
+      <!-- Faixa decorativa topo -->
+      <div class="h-1.5 w-full bg-gradient-to-r from-lime to-teal"></div>
+
+      <div class="px-7 py-8">
+        <!-- Fechar -->
+        <button id="popup-close" type="button" class="absolute top-5 right-5 w-8 h-8 flex items-center justify-center rounded-full text-muted hover:bg-sand hover:text-ink transition-all text-lg">✕</button>
+
+        <!-- Mascote + headline -->
+        <div class="flex items-center gap-3 mb-5">
+          <img src="atteek-mascot.png" alt="Atteek" class="w-12 h-12 rounded-xl object-cover ring-1 ring-line" />
+          <div>
+            <p class="font-display font-700 text-ink text-lg leading-tight">Quase lá! 🎉</p>
+            <p class="text-muted text-sm">Só mais um passo para o seu acesso</p>
+          </div>
+        </div>
+
+        <p class="text-muted text-sm mb-6 leading-relaxed">
+          Para liberar seu acesso, preencha rapidinho. Você também receberá dicas exclusivas de preparo no seu e-mail.
+        </p>
+
+        <form id="lead-form" novalidate>
+          <!-- Nome -->
+          <div class="mb-4">
+            <label for="lead-name" class="block text-ink font-600 text-sm mb-1.5">Seu nome</label>
+            <input
+              id="lead-name"
+              type="text"
+              placeholder="Ex: João Silva"
+              autocomplete="given-name"
+              class="w-full px-4 py-3 rounded-xl border border-line bg-sand/40 text-ink placeholder-muted/60 text-sm focus:outline-none focus:ring-2 focus:ring-lime/60 focus:border-lime transition"
+              required
+            />
+          </div>
+
+          <!-- Email -->
+          <div class="mb-6">
+            <label for="lead-email" class="block text-ink font-600 text-sm mb-1.5">Seu melhor e-mail</label>
+            <input
+              id="lead-email"
+              type="email"
+              placeholder="joao@email.com"
+              autocomplete="email"
+              class="w-full px-4 py-3 rounded-xl border border-line bg-sand/40 text-ink placeholder-muted/60 text-sm focus:outline-none focus:ring-2 focus:ring-lime/60 focus:border-lime transition"
+              required
+            />
+          </div>
+
+          <!-- Erro -->
+          <p id="lead-error" class="hidden text-red-500 text-xs mb-3">Preencha nome e e-mail para continuar.</p>
+
+          <!-- Submit -->
+          <button type="submit" id="lead-submit" class="w-full py-4 rounded-2xl bg-lime text-ink font-display font-700 text-base flex items-center justify-center gap-2 hover:scale-[1.02] transition-all shine">
+            <i class="fa-solid fa-bolt"></i>
+            <span id="lead-submit-text">Garantir meu acesso agora →</span>
+          </button>
+
+          <p class="text-center text-muted/70 text-xs mt-4">
+            <i class="fa-solid fa-lock text-limeDeep mr-1"></i>
+            Seus dados estão seguros. Sem spam, prometemos.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <script>
+    // ─── URL DA KIWIFY ────────────────────────────────────────────────────────
+    // ⚠️  SUBSTITUA PELA URL REAL DO SEU CHECKOUT NA KIWIFY:
+    var KIWIFY_URL = 'https://pay.kiwify.com.br/COLE-SEU-LINK-AQUI';
+
+    // ─── Popup de lead capture ────────────────────────────────────────────────
+    var popup       = document.getElementById('lead-popup');
+    var popupClose  = document.getElementById('popup-close');
+    var leadForm    = document.getElementById('lead-form');
+    var leadError   = document.getElementById('lead-error');
+    var submitBtn   = document.getElementById('lead-submit');
+    var submitText  = document.getElementById('lead-submit-text');
+
+    function openPopup() { popup.classList.remove('hidden'); popup.classList.add('flex'); }
+    function closePopup() { popup.classList.remove('flex'); popup.classList.add('hidden'); }
+
+    // Botão principal da seção de preço → abre popup
+    document.getElementById('btn-kiwify').addEventListener('click', openPopup);
+
+    // Fechar: X ou clique no backdrop
+    popupClose.addEventListener('click', closePopup);
+    popup.addEventListener('click', function (e) { if (e.target === popup) closePopup(); });
+
+    // ESC fecha
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePopup(); });
+
+    // Envio do formulário
+    leadForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name  = document.getElementById('lead-name').value.trim();
+      var email = document.getElementById('lead-email').value.trim();
+
+      if (!name || !email || !/\S+@\S+\.\S+/.test(email)) {
+        leadError.classList.remove('hidden');
+        return;
+      }
+      leadError.classList.add('hidden');
+
+      // Desabilita botão
+      submitBtn.disabled = true;
+      submitText.textContent = 'Redirecionando...';
+
+      // 1. Evento Lead (preencheu nome + email)
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'Lead', {
+          content_name: 'Atteek - Lead Capturado',
+          em: email,
+          fn: name.split(' ')[0].toLowerCase(),
+        });
+      }
+
+      // 2. Evento InitiateCheckout (está indo para o checkout)
+      setTimeout(function () {
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'InitiateCheckout', {
+            content_name: 'Atteek Assinatura',
+            currency: 'BRL',
+            value: 47.90,
+          });
+        }
+
+        // 3. Redireciona para Kiwify após eventos dispararem
+        setTimeout(function () {
+          window.location.href = KIWIFY_URL;
+        }, 350);
+      }, 200);
+    });
+
     document.querySelectorAll('.faq-trigger').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var item = btn.closest('.faq-item');
@@ -1122,59 +866,6 @@
     window.addEventListener('scroll', function () {
       if (window.scrollY > 20) header.classList.add('shadow-soft'); else header.classList.remove('shadow-soft');
     });
-
-    // ── Phone demo: cycling de telas ─────────────────────────────────────
-    (function () {
-      var screens = Array.from(document.querySelectorAll('#ps-container .phone-screen'));
-      var steps   = Array.from(document.querySelectorAll('.ps-step'));
-      var dots    = Array.from(document.querySelectorAll('.ps-dot'));
-      if (!screens.length) return;
-      var current = 0;
-      var DURATION = 3400;
-      var timer = null;
-
-      function goTo(n) {
-        screens[current].classList.remove('ps-active');
-        if (steps[current])  steps[current].classList.remove('ps-active');
-        if (dots[current])   dots[current].classList.remove('ps-active');
-        current = n;
-        screens[current].classList.add('ps-active');
-        if (steps[current])  steps[current].classList.add('ps-active');
-        if (dots[current])   dots[current].classList.add('ps-active');
-      }
-      function startAuto() { timer = setInterval(function () { goTo((current + 1) % screens.length); }, DURATION); }
-
-      // Click dots / labels to jump and restart timer
-      dots.forEach(function (dot, i) {
-        dot.addEventListener('click', function () { clearInterval(timer); goTo(i); startAuto(); });
-      });
-      steps.forEach(function (step, i) {
-        step.addEventListener('click', function () { clearInterval(timer); goTo(i); startAuto(); });
-      });
-
-      startAuto();
-    })();
-
-    // ── Aplica URLs do window.ATTEEK aos botões de CTA ──────────────────
-    (function () {
-      var cfg = window.ATTEEK || {};
-      // Checkout (Kiwify)
-      document.querySelectorAll('[data-cta="checkout"]').forEach(function (el) {
-        if (cfg.checkout) {
-          el.setAttribute('href', cfg.checkout);
-          el.setAttribute('target', '_blank');
-          el.setAttribute('rel', 'noopener noreferrer');
-        }
-      });
-      // Login no app
-      document.querySelectorAll('[data-cta="app-login"]').forEach(function (el) {
-        if (cfg.app) {
-          el.setAttribute('href', cfg.app + '/login');
-          el.setAttribute('target', '_blank');
-          el.setAttribute('rel', 'noopener noreferrer');
-        }
-      });
-    })();
   </script>
 </body>
 </html>
