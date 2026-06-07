@@ -3,12 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Atteek — Organize sua semana de marmitas</title>
-  <meta name="description" content="O Atteek organiza toda a sua semana de marmitas com roteiro otimizado, guia por voz e lista de compras automática. Acesso 100% grátis." />
-
+  <title>Atteek — Toda a sua semana de marmitas, na metade do tempo</title>
+  <meta name="description" content="O Atteek monta o roteiro mais rápido possível para todas as suas receitas ao mesmo tempo e te guia por voz, sem tocar na tela. Acesso 100% grátis." />
   <link rel="icon" type="image/png" href="atteek-mascot.png" />
   <link rel="apple-touch-icon" href="atteek-mascot.png" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -19,366 +17,704 @@
       theme: {
         extend: {
           colors: {
-            cream:    '#FAF7EF',
-            paper:    '#FFFFFF',
-            sand:     '#F2ECDD',
-            ink:      '#16352E',
-            teal:     '#1C7A63',
-            lime:     '#8BD11F',
-            limeDeep: '#6FB014',
-            mustard:  '#E8A83A',
-            muted:    '#5C6A60',
-            line:     '#E7E0D0',
+            cream:'#FAF7EF', paper:'#FFFFFF', sand:'#F2ECDD',
+            ink:'#16352E', teal:'#1C7A63', lime:'#8BD11F',
+            limeDeep:'#6FB014', mustard:'#E8A83A', muted:'#5C6A60', line:'#E7E0D0',
           },
-          fontFamily: {
-            display: ['"Space Grotesk"', 'sans-serif'],
-            sans:    ['Inter', 'sans-serif'],
-          },
+          fontFamily: { display:['"Space Grotesk"','sans-serif'], sans:['Inter','sans-serif'] },
           boxShadow: {
-            soft:   '0 10px 30px rgba(22,53,46,0.08)',
-            softer: '0 18px 60px rgba(22,53,46,0.10)',
+            soft:'0 10px 30px rgba(22,53,46,0.08)',
+            softer:'0 18px 60px rgba(22,53,46,0.10)',
           },
         },
       },
     }
   </script>
-
   <style>
-    html, body { background-color: #FAF7EF; overflow-x: hidden; width: 100%; max-width: 100%; }
-    body { font-family: 'Inter', sans-serif; color: #16352E; -webkit-font-smoothing: antialiased; }
-    *, *::before, *::after { min-width: 0; }
-    h1, h2, h3, .font-display { font-family: 'Space Grotesk', sans-serif; }
+    html,body{background:#FAF7EF;overflow-x:hidden}
+    body{font-family:'Inter',sans-serif;color:#16352E;-webkit-font-smoothing:antialiased}
+    *,*::before,*::after{min-width:0}
+    h1,h2,h3,.font-display{font-family:'Space Grotesk',sans-serif}
+    .text-gradient{background:linear-gradient(100deg,#6FB014 0%,#1C7A63 90%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .card{background:#fff;border:1px solid #ECE6D6;box-shadow:0 10px 30px rgba(22,53,46,0.06)}
+    .card-soft{background:rgba(255,255,255,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(22,53,46,0.06)}
+    .aurora{position:absolute;border-radius:9999px;filter:blur(90px);opacity:.55;pointer-events:none;z-index:0}
+    @keyframes pulseGlow{0%,100%{box-shadow:0 0 0 0 rgba(139,209,31,.45),0 10px 28px rgba(139,209,31,.28)}50%{box-shadow:0 0 0 13px rgba(139,209,31,0),0 12px 34px rgba(139,209,31,.34)}}
+    .cta-pulse{animation:pulseGlow 2.4s infinite}
+    .shine{position:relative;overflow:hidden}
+    .shine::after{content:'';position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-20deg)}
+    .shine:hover::after{left:130%;transition:left .7s ease}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+    .reveal.in{opacity:1;transform:none}
+    .grid-bg{background-image:linear-gradient(rgba(28,122,99,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(28,122,99,.05) 1px,transparent 1px);background-size:44px 44px}
 
-    .text-gradient {
-      background: linear-gradient(100deg, #6FB014 0%, #1C7A63 90%);
-      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .card { background: #FFFFFF; border: 1px solid #ECE6D6; box-shadow: 0 10px 30px rgba(22,53,46,0.06); }
-    .card-soft {
-      background: rgba(255,255,255,0.72);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(22,53,46,0.06);
-    }
-    .aurora { position: absolute; border-radius: 9999px; filter: blur(90px); opacity: 0.55; pointer-events: none; z-index: 0; }
+    /* Phone frame */
+    .phone-wrap{width:240px;flex-shrink:0;position:relative}
+    .phone-outer{background:#1a1a1a;border-radius:40px;padding:8px;box-shadow:0 40px 80px rgba(22,53,46,.28),0 10px 30px rgba(22,53,46,.14),inset 0 0 0 1px rgba(255,255,255,.06)}
+    .phone-screen{background:#FAF7EF;border-radius:32px;height:490px;overflow:hidden;position:relative;font-family:'Inter',sans-serif}
 
-    @keyframes pulseGlow {
-      0%,100% { box-shadow: 0 0 0 0 rgba(139,209,31,0.45), 0 10px 28px rgba(139,209,31,0.28); }
-      50%      { box-shadow: 0 0 0 13px rgba(139,209,31,0), 0 12px 34px rgba(139,209,31,0.34); }
-    }
-    .cta-pulse { animation: pulseGlow 2.4s infinite; }
+    /* Demo panels */
+    .demo-panel{display:none}
+    .demo-panel.active{display:block;animation:panelIn .45s ease}
+    @keyframes panelIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-    .shine { position: relative; overflow: hidden; }
-    .shine::after {
-      content: ''; position: absolute; top: 0; left: -120%; width: 60%; height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
-      transform: skewX(-20deg);
-    }
-    .shine:hover::after { left: 130%; transition: left .7s ease; }
+    /* Tab buttons */
+    .demo-tab{border:2px solid #E7E0D0;background:#fff;transition:all .2s;position:relative;overflow:hidden;cursor:pointer;text-align:left}
+    .demo-tab.active{border-color:#8BD11F;background:rgba(139,209,31,.07)}
+    .tab-bar{position:absolute;bottom:0;left:0;height:3px;background:#8BD11F;width:0;transition:width linear}
 
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
-    .reveal.in { opacity: 1; transform: none; }
-
-    .grid-bg {
-      background-image: linear-gradient(rgba(28,122,99,0.05) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(28,122,99,0.05) 1px, transparent 1px);
-      background-size: 44px 44px;
-    }
+    /* Equalizer animation */
+    @keyframes eq{0%,100%{height:4px}50%{height:14px}}
+    .eq-bar{display:inline-block;width:3px;border-radius:2px;background:#8BD11F;animation:eq 1s ease-in-out infinite}
 
     /* Toast */
-    #toast {
-      position: fixed; bottom: 24px; left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
-      z-index: 9999; white-space: nowrap;
-    }
-    #toast.show { transform: translateX(-50%) translateY(0); }
+    #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);transition:transform .4s cubic-bezier(.34,1.56,.64,1);z-index:9999;white-space:nowrap}
+    #toast.show{transform:translateX(-50%) translateY(0)}
 
-    ::selection { background: #8BD11F; color: #16352E; }
+    ::selection{background:#8BD11F;color:#16352E}
   </style>
 </head>
-
 <body class="bg-cream text-ink antialiased">
 
-  <!-- ═══ NAV ═══ -->
-  <header class="fixed top-0 inset-x-0 z-50">
-    <div class="card-soft border-b border-line/70">
-      <nav class="max-w-5xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
-        <a href="#topo" class="flex items-center gap-2.5 group">
-          <img src="atteek-mascot.png" alt="Atteek" class="w-9 h-9 rounded-xl object-cover ring-1 ring-line shadow-sm group-hover:scale-105 transition-transform" />
-          <span class="font-display font-700 text-xl tracking-tight text-ink">atteek</span>
-        </a>
-        <a href="#cadastro" class="shine inline-flex items-center gap-2 bg-lime text-ink font-display font-600 text-sm px-5 py-2.5 rounded-xl hover:scale-105 transition-all">
-          Cadastre-se grátis <i class="fa-solid fa-arrow-right text-xs"></i>
-        </a>
-      </nav>
+<!-- ═══ NAV ═══ -->
+<header class="fixed top-0 inset-x-0 z-50" id="nav">
+  <div class="card-soft border-b border-line/70">
+    <nav class="max-w-5xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+      <a href="#topo" class="flex items-center gap-2.5 group">
+        <img src="atteek-mascot.png" alt="Atteek" class="w-9 h-9 rounded-xl object-cover ring-1 ring-line shadow-sm group-hover:scale-105 transition-transform" />
+        <span class="font-display font-700 text-xl tracking-tight">atteek</span>
+      </a>
+      <a href="#cadastro" class="shine inline-flex items-center gap-2 bg-lime text-ink font-display font-600 text-sm px-5 py-2.5 rounded-xl hover:scale-105 transition-all">
+        Cadastre-se grátis <i class="fa-solid fa-arrow-right text-xs"></i>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section id="topo" class="relative overflow-hidden pt-28 pb-16 sm:pt-40 sm:pb-24 grid-bg">
+  <div class="aurora bg-lime/40 w-[30rem] h-[30rem] -top-40 -left-32"></div>
+  <div class="aurora bg-mustard/30 w-[26rem] h-[26rem] top-0 -right-32"></div>
+  <div class="relative z-10 max-w-3xl mx-auto px-5 sm:px-8 text-center">
+    <div class="reveal inline-flex items-center gap-2 card-soft rounded-full px-4 py-1.5 text-xs text-teal font-600 mb-6">
+      <span class="w-2 h-2 rounded-full bg-lime animate-pulse"></span>
+      Acesso 100% grátis
     </div>
-  </header>
+    <h1 class="reveal font-display font-700 text-[2.2rem] leading-[1.08] sm:text-5xl lg:text-[3.6rem] lg:leading-[1.06] tracking-tight">
+      Toda a sua semana de marmitas,<br class="hidden sm:block" />
+      <span class="text-gradient">na metade do tempo.</span>
+    </h1>
+    <p class="reveal mt-5 text-base sm:text-xl text-muted max-w-2xl mx-auto leading-relaxed">
+      O Atteek monta o <strong class="text-ink">roteiro mais rápido possível</strong> para todas as suas receitas ao mesmo tempo e te guia <strong class="text-ink">por voz, sem tocar na tela.</strong>
+    </p>
+    <form id="hero-form" class="reveal mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto" novalidate>
+      <input id="hero-email" type="email" placeholder="Seu melhor e-mail" autocomplete="email"
+        class="flex-1 px-5 py-4 rounded-2xl border border-line bg-white text-ink placeholder-muted/60 text-sm focus:outline-none focus:ring-2 focus:ring-lime/60 focus:border-lime transition" required />
+      <button type="submit" id="hero-btn" class="cta-pulse shine inline-flex items-center justify-center gap-2 bg-lime text-ink font-display font-700 text-sm px-6 py-4 rounded-2xl hover:scale-[1.02] transition-all whitespace-nowrap">
+        Cadastre-se grátis <i class="fa-solid fa-arrow-right text-xs"></i>
+      </button>
+    </form>
+    <p id="hero-error" class="hidden text-red-500 text-xs mt-2">Por favor, insira um e-mail válido.</p>
+    <p class="reveal mt-5 text-sm text-muted">
+      <i class="fa-solid fa-lock text-limeDeep mr-1"></i> Sem cartão &nbsp;·&nbsp; Grátis para começar &nbsp;·&nbsp; +500 marmiteiros
+    </p>
+  </div>
+</section>
 
-  <!-- ═══ HERO ═══ -->
-  <section id="topo" class="relative overflow-hidden pt-28 pb-16 sm:pt-40 sm:pb-24 grid-bg">
-    <div class="aurora bg-lime/40 w-[28rem] h-[28rem] -top-40 -left-32"></div>
-    <div class="aurora bg-mustard/30 w-[24rem] h-[24rem] top-0 -right-32"></div>
-
-    <div class="relative z-10 max-w-3xl mx-auto px-5 sm:px-8 text-center">
-
-      <div class="reveal inline-flex items-center gap-2 card-soft rounded-full px-4 py-1.5 text-xs text-teal font-600 mb-6">
-        <span class="w-2 h-2 rounded-full bg-lime animate-pulse"></span>
-        Acesso 100% grátis
-      </div>
-
-      <h1 class="reveal font-display font-700 text-[2.1rem] leading-[1.1] sm:text-5xl lg:text-[3.4rem] lg:leading-[1.07] tracking-tight text-ink">
-        Sua semana de marmitas,<br class="hidden sm:block" />
-        <span class="text-gradient">organizada em minutos.</span>
-      </h1>
-
-      <p class="reveal mt-5 text-base sm:text-lg text-muted max-w-xl mx-auto leading-relaxed">
-        O Atteek monta o <strong class="text-ink">roteiro mais rápido</strong> para todas as suas receitas ao mesmo tempo e te guia <strong class="text-ink">por voz</strong>, sem tocar na tela.
-      </p>
-
-      <!-- Form hero -->
-      <form id="hero-form" class="reveal mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto" novalidate>
-        <input
-          id="hero-email"
-          type="email"
-          placeholder="Seu melhor e-mail"
-          autocomplete="email"
-          class="flex-1 px-5 py-4 rounded-2xl border border-line bg-white text-ink placeholder-muted/60 text-sm focus:outline-none focus:ring-2 focus:ring-lime/60 focus:border-lime transition"
-          required
-        />
-        <button type="submit" id="hero-btn" class="cta-pulse shine inline-flex items-center justify-center gap-2 bg-lime text-ink font-display font-700 text-sm px-6 py-4 rounded-2xl hover:scale-[1.02] transition-all whitespace-nowrap">
-          Cadastre-se grátis <i class="fa-solid fa-arrow-right text-xs"></i>
-        </button>
-      </form>
-      <p id="hero-error" class="hidden text-red-500 text-xs mt-2">Por favor, insira um e-mail válido.</p>
-
-      <p class="reveal mt-5 text-sm text-muted">
-        <i class="fa-solid fa-lock text-limeDeep mr-1"></i> Sem cartão &nbsp;·&nbsp; Acesso grátis &nbsp;·&nbsp; +500 marmiteiros
-      </p>
-
+<!-- ═══ PROOF BAR ═══ -->
+<section class="border-y border-line bg-paper/80 py-5">
+  <div class="max-w-4xl mx-auto px-5 sm:px-8 grid grid-cols-3 gap-4 text-center">
+    <div class="reveal">
+      <p class="font-display font-700 text-2xl sm:text-3xl text-gradient">53%</p>
+      <p class="text-muted text-xs sm:text-sm mt-1">menos tempo na cozinha</p>
     </div>
-  </section>
-
-  <!-- ═══ BENEFÍCIOS ═══ -->
-  <section class="relative py-16 sm:py-24 bg-paper/60 border-y border-line">
-    <div class="max-w-5xl mx-auto px-5 sm:px-8">
-
-      <div class="text-center reveal mb-10 sm:mb-14">
-        <h2 class="font-display font-700 text-2xl sm:text-4xl text-ink">
-          Tudo que você precisa para o preparo
-        </h2>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-5">
-        <div class="reveal card rounded-3xl p-7 hover:-translate-y-1 transition-all">
-          <div class="w-12 h-12 rounded-2xl bg-lime/20 flex items-center justify-center text-limeDeep text-xl mb-4">
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
-          </div>
-          <h3 class="font-display font-600 text-xl text-ink mb-2">Roteiro otimizado</h3>
-          <p class="text-muted leading-relaxed text-sm">
-            Combina todas as suas receitas em um só plano paralelo. Você termina no menor tempo possível, sem panela parada.
-          </p>
-        </div>
-
-        <div class="reveal card rounded-3xl p-7 hover:-translate-y-1 transition-all" style="transition-delay:.07s">
-          <div class="w-12 h-12 rounded-2xl bg-teal/15 flex items-center justify-center text-teal text-xl mb-4">
-            <i class="fa-solid fa-microphone"></i>
-          </div>
-          <h3 class="font-display font-600 text-xl text-ink mb-2">Guiado por voz</h3>
-          <p class="text-muted leading-relaxed text-sm">
-            Mão suja? Diga <strong class="text-limeDeep">"próximo"</strong> e a próxima etapa aparece. Você não precisa tocar no celular.
-          </p>
-        </div>
-
-        <div class="reveal card rounded-3xl p-7 hover:-translate-y-1 transition-all" style="transition-delay:.14s">
-          <div class="w-12 h-12 rounded-2xl bg-mustard/15 flex items-center justify-center text-mustard text-xl mb-4">
-            <i class="fa-solid fa-cart-shopping"></i>
-          </div>
-          <h3 class="font-display font-600 text-xl text-ink mb-2">Lista de compras</h3>
-          <p class="text-muted leading-relaxed text-sm">
-            Gerada automaticamente com as quantidades certas para a semana toda. Chega de conta de cabeça.
-          </p>
-        </div>
-      </div>
-
+    <div class="reveal" style="transition-delay:.06s">
+      <p class="font-display font-700 text-2xl sm:text-3xl text-gradient">+500</p>
+      <p class="text-muted text-xs sm:text-sm mt-1">marmiteiros ativos</p>
     </div>
-  </section>
-
-  <!-- ═══ COMO FUNCIONA ═══ -->
-  <section class="relative py-16 sm:py-24">
-    <div class="max-w-5xl mx-auto px-5 sm:px-8">
-
-      <div class="text-center reveal mb-12">
-        <span class="text-teal font-600 text-sm tracking-widest uppercase">Simples assim</span>
-        <h2 class="font-display font-700 text-2xl sm:text-4xl mt-2 text-ink">
-          Três passos para começar
-        </h2>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-6 relative">
-        <div class="hidden md:block absolute top-7 left-[18%] right-[18%] h-px bg-gradient-to-r from-lime/0 via-teal/30 to-lime/0"></div>
-
-        <div class="reveal text-center">
-          <div class="w-14 h-14 rounded-2xl bg-lime text-ink font-display font-700 text-2xl flex items-center justify-center mx-auto mb-4">1</div>
-          <h3 class="font-display font-600 text-lg text-ink mb-2">Cadastre-se grátis</h3>
-          <p class="text-muted text-sm leading-relaxed">Crie sua conta com seu e-mail, sem cartão de crédito.</p>
-        </div>
-
-        <div class="reveal text-center" style="transition-delay:.09s">
-          <div class="w-14 h-14 rounded-2xl bg-lime text-ink font-display font-700 text-2xl flex items-center justify-center mx-auto mb-4">2</div>
-          <h3 class="font-display font-600 text-lg text-ink mb-2">Escolha suas receitas</h3>
-          <p class="text-muted text-sm leading-relaxed">Monte o cardápio da semana e o número de marmitas.</p>
-        </div>
-
-        <div class="reveal text-center" style="transition-delay:.18s">
-          <div class="w-14 h-14 rounded-2xl bg-lime text-ink font-display font-700 text-2xl flex items-center justify-center mx-auto mb-4">3</div>
-          <h3 class="font-display font-600 text-lg text-ink mb-2">Cozinhe guiado</h3>
-          <p class="text-muted text-sm leading-relaxed">Siga o roteiro com cronômetro ao vivo e avance por voz.</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ═══ CTA FINAL ═══ -->
-  <section id="cadastro" class="relative py-16 sm:py-24 overflow-hidden grid-bg">
-    <div class="aurora bg-lime/40 w-[28rem] h-[28rem] -bottom-32 -left-20"></div>
-    <div class="aurora bg-mustard/30 w-[24rem] h-[24rem] -top-20 -right-20"></div>
-
-    <div class="relative z-10 max-w-2xl mx-auto px-5 sm:px-8 text-center reveal">
-      <img src="atteek-mascot.png" alt="Atteek" class="w-16 h-16 mx-auto rounded-2xl object-cover ring-1 ring-line shadow-soft mb-6" />
-
-      <h2 class="font-display font-700 text-2xl sm:text-4xl text-ink">
-        Comece hoje. <span class="text-gradient">É grátis.</span>
-      </h2>
-      <p class="text-muted mt-4 text-base max-w-sm mx-auto">
-        Cadastre-se em segundos e faça sua primeira receita ainda hoje.
-      </p>
-
-      <form id="final-form" class="mt-7 flex flex-col sm:flex-row gap-3 max-w-md mx-auto" novalidate>
-        <input
-          id="final-email"
-          type="email"
-          placeholder="Seu melhor e-mail"
-          autocomplete="email"
-          class="flex-1 px-5 py-4 rounded-2xl border border-line bg-white text-ink placeholder-muted/60 text-sm focus:outline-none focus:ring-2 focus:ring-lime/60 focus:border-lime transition"
-          required
-        />
-        <button type="submit" id="final-btn" class="cta-pulse shine inline-flex items-center justify-center gap-2 bg-lime text-ink font-display font-700 text-sm px-6 py-4 rounded-2xl hover:scale-[1.02] transition-all whitespace-nowrap">
-          Cadastre-se grátis <i class="fa-solid fa-arrow-right text-xs"></i>
-        </button>
-      </form>
-      <p id="final-error" class="hidden text-red-500 text-xs mt-2">Por favor, insira um e-mail válido.</p>
-
-      <p class="text-sm text-muted mt-4">
-        <i class="fa-solid fa-lock text-limeDeep mr-1"></i> Sem cartão &nbsp;·&nbsp; Acesso grátis
-      </p>
-    </div>
-  </section>
-
-  <!-- ═══ FOOTER ═══ -->
-  <footer class="border-t border-line bg-paper/80">
-    <div class="max-w-5xl mx-auto px-5 sm:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted">
-      <div class="flex items-center gap-2.5">
-        <img src="atteek-mascot.png" alt="Atteek" class="w-7 h-7 rounded-lg object-cover ring-1 ring-line" />
-        <span class="font-display font-700 text-lg text-ink">atteek</span>
-      </div>
-      <div class="flex gap-6">
-        <a href="#" class="hover:text-limeDeep transition-colors">Termos de uso</a>
-        <a href="#" class="hover:text-limeDeep transition-colors">Privacidade</a>
-        <a href="mailto:admin@atteek.com" class="hover:text-limeDeep transition-colors">Contato</a>
-      </div>
-      <p>© 2026 Atteek</p>
-    </div>
-  </footer>
-
-  <!-- ═══ TOAST SUCCESS ═══ -->
-  <div id="toast" class="card rounded-2xl px-5 py-4 shadow-softer flex items-center gap-3">
-    <div class="w-8 h-8 rounded-full bg-lime/20 flex items-center justify-center text-limeDeep shrink-0">
-      <i class="fa-solid fa-check"></i>
-    </div>
-    <div>
-      <p class="font-600 text-ink text-sm">Cadastro feito! Verifique seu e-mail.</p>
-      <p class="text-muted text-xs">Enviamos o link de acesso para você.</p>
+    <div class="reveal" style="transition-delay:.12s">
+      <p class="font-display font-700 text-2xl sm:text-3xl text-gradient">&lt;60s</p>
+      <p class="text-muted text-xs sm:text-sm mt-1">para gerar o roteiro</p>
     </div>
   </div>
+</section>
 
-  <script>
-    var API_URL = 'https://app.atteek.com/api/auth/instagram-entry';
+<!-- ═══ APP DEMO ═══ -->
+<section class="relative py-16 sm:py-24 overflow-hidden">
+  <div class="aurora bg-lime/20 w-[28rem] h-[28rem] top-0 -right-24"></div>
+  <div class="relative z-10 max-w-6xl mx-auto px-5 sm:px-8">
 
-    function submitEmail(email, errorEl, btn) {
-      if (!email || !/\S+@\S+\.\S+/.test(email)) {
-        errorEl.classList.remove('hidden');
-        return;
-      }
-      errorEl.classList.add('hidden');
+    <div class="text-center reveal mb-10 sm:mb-14">
+      <span class="text-teal font-600 text-sm tracking-widest uppercase">Veja por dentro</span>
+      <h2 class="font-display font-700 text-2xl sm:text-4xl mt-2 text-ink">
+        Do caos ao plano em <span class="text-gradient">segundos</span>
+      </h2>
+      <p class="text-muted mt-3 text-sm sm:text-base max-w-lg mx-auto">
+        Cada tela foi pensada para te fazer gastar menos tempo — e ter mais resultado.
+      </p>
+    </div>
 
-      var original = btn.innerHTML;
-      btn.disabled = true;
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Aguarde...';
+    <!-- Tab buttons -->
+    <div class="flex gap-3 justify-center mb-10 overflow-x-auto pb-1">
+      <button class="demo-tab rounded-2xl px-5 py-3 active" data-tab="0" id="tab-0">
+        <div class="tab-bar" id="pb-0"></div>
+        <p class="font-display font-600 text-sm text-ink whitespace-nowrap">01 — Escolha</p>
+        <p class="text-muted text-xs mt-0.5 hidden sm:block">Catálogo de receitas</p>
+      </button>
+      <button class="demo-tab rounded-2xl px-5 py-3" data-tab="1" id="tab-1">
+        <div class="tab-bar" id="pb-1"></div>
+        <p class="font-display font-600 text-sm text-ink whitespace-nowrap">02 — Otimize</p>
+        <p class="text-muted text-xs mt-0.5 hidden sm:block">Plano inteligente</p>
+      </button>
+      <button class="demo-tab rounded-2xl px-5 py-3" data-tab="2" id="tab-2">
+        <div class="tab-bar" id="pb-2"></div>
+        <p class="font-display font-600 text-sm text-ink whitespace-nowrap">03 — Cozinhe</p>
+        <p class="text-muted text-xs mt-0.5 hidden sm:block">Guia por voz</p>
+      </button>
+    </div>
 
-      fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email }),
-      })
-        .then(function (r) { return r.json(); })
-        .then(function (data) {
-          if (data.ok) {
-            showToast();
-            btn.innerHTML = '<i class="fa-solid fa-check"></i> E-mail enviado!';
-          } else {
-            btn.disabled = false;
-            btn.innerHTML = original;
-            errorEl.textContent = data.error || 'Erro ao cadastrar. Tente novamente.';
-            errorEl.classList.remove('hidden');
-          }
-        })
-        .catch(function () {
-          btn.disabled = false;
-          btn.innerHTML = original;
-          errorEl.textContent = 'Erro de conexão. Tente novamente.';
-          errorEl.classList.remove('hidden');
-        });
+    <!-- PANEL 1: Escolha -->
+    <div class="demo-panel active" id="panel-0">
+      <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 justify-center">
+        <!-- Phone -->
+        <div class="phone-wrap">
+          <div class="phone-outer">
+            <div class="phone-screen">
+              <!-- Status bar -->
+              <div style="background:#FAF7EF;padding:10px 14px 4px;display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:11px;font-weight:600;color:#16352E">19:21</span>
+                <span style="font-size:10px;color:#5C6A60">●●● ▲ 🔋</span>
+              </div>
+              <!-- App header -->
+              <div style="padding:4px 14px 10px;display:flex;align-items:center;gap:8px">
+                <img src="atteek-mascot.png" style="width:30px;height:30px;border-radius:9px;object-fit:cover" alt="" />
+                <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:#16352E">Atteek</span>
+              </div>
+              <!-- Greeting -->
+              <div style="padding:0 14px 10px">
+                <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;color:#16352E">Olá, Maria! 👋</div>
+                <div style="font-size:12px;color:#5C6A60;margin-top:2px">Bora escolher a próxima marmita? 😀</div>
+              </div>
+              <!-- Search -->
+              <div style="margin:0 14px 14px;background:#fff;border:1px solid #E7E0D0;border-radius:22px;padding:9px 14px;display:flex;align-items:center;gap:8px">
+                <span style="font-size:12px;color:#9CA3AF">🔍</span>
+                <span style="font-size:12px;color:#9CA3AF">Buscar receita...</span>
+              </div>
+              <!-- Label -->
+              <div style="padding:0 14px 8px">
+                <span style="font-size:9px;font-weight:700;color:#5C6A60;letter-spacing:1.5px;text-transform:uppercase">Categorias</span>
+              </div>
+              <!-- Grid -->
+              <div style="padding:0 12px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#FEF3C7;border-radius:18px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:6px">
+                  <span style="font-size:26px">🍗</span>
+                  <span style="font-size:12px;font-weight:700;color:#16352E">Frango</span>
+                </div>
+                <div style="background:#FEE2E2;border-radius:18px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:6px">
+                  <span style="font-size:26px">🥩</span>
+                  <span style="font-size:12px;font-weight:700;color:#16352E">Carne</span>
+                </div>
+                <div style="background:#FED7AA;border-radius:18px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:6px">
+                  <span style="font-size:26px">🐷</span>
+                  <span style="font-size:12px;font-weight:700;color:#16352E">Suíno</span>
+                </div>
+                <div style="background:#FEF9C3;border-radius:18px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:6px">
+                  <span style="font-size:26px">🍝</span>
+                  <span style="font-size:12px;font-weight:700;color:#16352E">Massas</span>
+                </div>
+              </div>
+              <!-- Bottom nav -->
+              <div style="position:absolute;bottom:0;left:0;right:0;border-top:1px solid #E7E0D0;background:#fff;padding:8px 14px 12px;display:flex;justify-content:space-around">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+                  <span style="font-size:14px">🍽️</span>
+                  <span style="font-size:9px;font-weight:700;color:#6FB014">Receitas</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+                  <span style="font-size:14px">📊</span>
+                  <span style="font-size:9px;color:#9CA3AF">Histórico</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+                  <span style="font-size:14px">👤</span>
+                  <span style="font-size:9px;color:#9CA3AF">Conta</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="max-w-md">
+          <div class="inline-flex items-center gap-2 bg-lime/15 border border-lime/40 rounded-full px-3 py-1.5 text-xs text-limeDeep font-600 mb-5">
+            <i class="fa-solid fa-layer-group"></i> Passo 1 de 3
+          </div>
+          <h3 class="font-display font-700 text-2xl sm:text-3xl text-ink leading-tight">
+            Escolha suas receitas e decida a semana em segundos
+          </h3>
+          <p class="text-muted mt-4 leading-relaxed">
+            Catálogo completo organizado por categorias. Frango, Carne, Suíno, Massas e mais. Cada receita já traz o tempo total calculado para as suas marmitas — sem surpresa na cozinha.
+          </p>
+          <ul class="mt-6 space-y-3">
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+              <span class="text-sm text-ink">Filtros por equipamento (fogão, forno, panela única) e tempo</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+              <span class="text-sm text-ink">Veja o tempo estimado antes de confirmar o cardápio</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+              <span class="text-sm text-ink">Favorite receitas para reutilizar na semana seguinte</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 2: Otimize -->
+    <div class="demo-panel" id="panel-1">
+      <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 justify-center">
+        <!-- Phone -->
+        <div class="phone-wrap">
+          <div class="phone-outer">
+            <div class="phone-screen">
+              <div style="background:#FAF7EF;padding:10px 14px 4px;display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:11px;font-weight:600;color:#16352E">19:23</span>
+                <span style="font-size:10px;color:#5C6A60">●●● ▲ 🔋</span>
+              </div>
+              <!-- Time header -->
+              <div style="padding:8px 14px 2px">
+                <div style="display:flex;align-items:baseline;gap:6px">
+                  <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:30px;color:#16352E">47min</span>
+                  <span style="font-size:11px;color:#5C6A60">de preparo</span>
+                </div>
+                <div style="font-size:11px;color:#5C6A60;margin-top:2px">
+                  vs 1h 42min sequencial — <span style="color:#6FB014;font-weight:700">53% mais rápido ↑</span>
+                </div>
+              </div>
+              <!-- Tabs -->
+              <div style="display:flex;margin:10px 12px;background:#F2ECDD;border-radius:12px;padding:3px;gap:3px">
+                <div style="flex:1;background:#fff;border-radius:9px;padding:6px;text-align:center;font-size:11px;font-weight:700;color:#16352E">Roteiro (25)</div>
+                <div style="flex:1;padding:6px;text-align:center;font-size:11px;color:#9CA3AF">Lista (15)</div>
+              </div>
+              <!-- Gantt -->
+              <div style="padding:4px 12px;flex:1">
+                <div style="font-size:8px;text-transform:uppercase;letter-spacing:1px;color:#9CA3AF;margin-bottom:6px;font-weight:600">Linha do Tempo — Por Tarefa</div>
+                <!-- Gantt rows -->
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px">
+                  <span style="font-size:8px;color:#5C6A60;width:68px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0">Preparar mandio...</span>
+                  <div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative">
+                    <div style="position:absolute;left:0%;width:17%;height:100%;background:#8BD11F;border-radius:4px"></div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px">
+                  <span style="font-size:8px;color:#16352E;width:68px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0;font-weight:600">| Cozinhar mandio...</span>
+                  <div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative">
+                    <div style="position:absolute;left:17%;width:79%;height:100%;background:#93C5FD;border-radius:4px"></div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px">
+                  <span style="font-size:8px;color:#5C6A60;width:68px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0">Pré-aquecer forno</span>
+                  <div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative">
+                    <div style="position:absolute;left:4%;width:17%;height:100%;background:#8BD11F;border-radius:4px"></div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px">
+                  <span style="font-size:8px;color:#5C6A60;width:68px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0">Aguardar forno...</span>
+                  <div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative">
+                    <div style="position:absolute;left:21%;width:25%;height:100%;background:#93C5FD;border-radius:4px"></div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px">
+                  <span style="font-size:8px;color:#5C6A60;width:68px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0">Preparar legumes</span>
+                  <div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative">
+                    <div style="position:absolute;left:21%;width:13%;height:100%;background:#8BD11F;border-radius:4px"></div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px">
+                  <span style="font-size:8px;color:#5C6A60;width:68px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0">Temperar legumes</span>
+                  <div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative">
+                    <div style="position:absolute;left:34%;width:9%;height:100%;background:#8BD11F;border-radius:4px"></div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px">
+                  <span style="font-size:8px;color:#5C6A60;width:68px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0">Assar legumes</span>
+                  <div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative">
+                    <div style="position:absolute;left:47%;width:42%;height:100%;background:#93C5FD;border-radius:4px"></div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px">
+                  <span style="font-size:8px;color:#5C6A60;width:68px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0">Selar carne moída</span>
+                  <div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative">
+                    <div style="position:absolute;left:55%;width:9%;height:100%;background:#8BD11F;border-radius:4px"></div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px">
+                  <span style="font-size:8px;color:#5C6A60;width:68px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0">Cozinhar carne...</span>
+                  <div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative">
+                    <div style="position:absolute;left:64%;width:17%;height:100%;background:#93C5FD;border-radius:4px"></div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px">
+                  <span style="font-size:8px;color:#5C6A60;width:68px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0">Porcionar e arm...</span>
+                  <div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative">
+                    <div style="position:absolute;left:81%;width:9%;height:100%;background:#C4B5FD;border-radius:4px"></div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px">
+                  <span style="font-size:8px;color:#16352E;width:68px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0;font-weight:600">| Escorrer e amas...</span>
+                  <div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative">
+                    <div style="position:absolute;left:96%;width:4%;height:100%;background:#8BD11F;border-radius:4px"></div>
+                  </div>
+                </div>
+                <!-- Legend -->
+                <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap">
+                  <span style="font-size:8px;color:#5C6A60"><span style="color:#8BD11F">●</span> Ação</span>
+                  <span style="font-size:8px;color:#5C6A60"><span style="color:#93C5FD">●</span> Espera</span>
+                  <span style="font-size:8px;color:#5C6A60"><span style="color:#C4B5FD">●</span> Armaz.</span>
+                  <span style="font-size:8px;color:#5C6A60">| Crítico</span>
+                </div>
+              </div>
+              <!-- CTA -->
+              <div style="padding:8px 12px 12px">
+                <div style="background:#8BD11F;border-radius:16px;padding:13px;text-align:center;font-size:13px;font-weight:700;color:#16352E">
+                  ▶ Iniciar preparo agora
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="max-w-md">
+          <div class="inline-flex items-center gap-2 bg-lime/15 border border-lime/40 rounded-full px-3 py-1.5 text-xs text-limeDeep font-600 mb-5">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Passo 2 de 3
+          </div>
+          <h3 class="font-display font-700 text-2xl sm:text-3xl text-ink leading-tight">
+            O algoritmo monta o plano. Você só precisa cozinhar.
+          </h3>
+          <p class="text-muted mt-4 leading-relaxed">
+            O Atteek usa o <strong class="text-ink">algoritmo de Caminho Crítico</strong> — a mesma lógica usada em gestão de projetos industriais — para montar o roteiro de menor tempo possível com todas as suas receitas em paralelo.
+          </p>
+          <!-- Proof card -->
+          <div class="mt-5 card rounded-2xl p-4 flex items-center gap-4">
+            <div class="text-center flex-1">
+              <p class="text-muted text-xs line-through">1h 42min</p>
+              <p class="text-muted text-sm font-600">Uma por vez</p>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <div class="h-px w-6 bg-line"></div>
+              <span class="text-limeDeep font-700 text-sm bg-lime/15 px-2 py-0.5 rounded-full">−53%</span>
+              <div class="h-px w-6 bg-line"></div>
+            </div>
+            <div class="text-center flex-1">
+              <p class="font-display font-700 text-xl text-gradient">47min</p>
+              <p class="text-limeDeep text-sm font-600">Com Atteek</p>
+            </div>
+          </div>
+          <ul class="mt-5 space-y-3">
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+              <span class="text-sm text-ink">Roteiro gerado em menos de 60 segundos</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+              <span class="text-sm text-ink">Respeita seu fogão, forno e equipamentos reais</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+              <span class="text-sm text-ink">Lista de compras automática com todas as quantidades certas</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 3: Cozinhe -->
+    <div class="demo-panel" id="panel-2">
+      <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 justify-center">
+        <!-- Phone -->
+        <div class="phone-wrap">
+          <div class="phone-outer">
+            <div class="phone-screen" style="background:#FAF7EF">
+              <!-- Mic bar (orange like app) -->
+              <div style="background:#F97316;padding:8px 14px;display:flex;justify-content:space-between;align-items:center">
+                <div style="background:rgba(255,255,255,.2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px">🎤</div>
+                <span style="font-size:9px;color:rgba(255,255,255,.8)">●●● ▲ 🔋 24%</span>
+              </div>
+              <!-- Header -->
+              <div style="padding:8px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E7E0D0">
+                <div>
+                  <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;color:#16352E">0:02</div>
+                  <div style="font-size:9px;color:#9CA3AF">0/25 etapas</div>
+                </div>
+                <div style="text-align:center">
+                  <div style="font-size:8px;color:#9CA3AF;text-transform:uppercase;letter-spacing:.5px">PREVISTO</div>
+                  <div style="font-size:14px;font-weight:700;color:#16352E">47min</div>
+                </div>
+                <div style="display:flex;gap:6px">
+                  <div style="width:26px;height:26px;background:#F2ECDD;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px">🛒</div>
+                  <div style="width:26px;height:26px;background:#F2ECDD;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px">⏸</div>
+                </div>
+              </div>
+              <!-- Voice bar -->
+              <div style="padding:7px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #E7E0D0">
+                <div style="width:30px;height:30px;background:#8BD11F;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🎙️</div>
+                <div style="display:flex;align-items:flex-end;gap:2px;height:16px">
+                  <span class="eq-bar" style="height:6px;animation-delay:0s"></span>
+                  <span class="eq-bar" style="height:12px;animation-delay:.12s"></span>
+                  <span class="eq-bar" style="height:8px;animation-delay:.24s"></span>
+                  <span class="eq-bar" style="height:14px;animation-delay:.36s"></span>
+                  <span class="eq-bar" style="height:5px;animation-delay:.48s"></span>
+                </div>
+                <span style="font-size:10px;color:#5C6A60;margin-left:auto">diga <strong style="color:#6FB014">"próximo"</strong></span>
+              </div>
+              <!-- Step card -->
+              <div style="margin:10px 12px;background:#fff;border:2px solid #8BD11F;border-radius:18px;padding:12px">
+                <div style="display:flex;gap:5px;margin-bottom:7px">
+                  <span style="background:#F2ECDD;color:#16352E;font-size:8px;font-weight:700;padding:3px 7px;border-radius:20px">AÇÃO</span>
+                  <span style="background:#FEF3C7;color:#92400E;font-size:8px;font-weight:700;padding:3px 7px;border-radius:20px">⚡ crítico</span>
+                </div>
+                <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:#16352E;margin-bottom:5px">Preparar mandioquinha</div>
+                <div style="font-size:9px;color:#5C6A60;line-height:1.5;margin-bottom:10px">Lave, descasque e corte em pedaços de 2-3cm para acelerar o cozimento. Coloque em panela média e adicione água fria até cobrir. Pitada de sal. Leve ao fogo alto.</div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:10px">
+                  <div>
+                    <div style="font-size:7px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.5px">SEU TEMPO</div>
+                    <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:#16352E">0:02</div>
+                  </div>
+                  <div style="text-align:right">
+                    <div style="font-size:7px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.5px">PREVISTO</div>
+                    <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:#9CA3AF">2:07</div>
+                  </div>
+                </div>
+                <div style="background:#8BD11F;border-radius:12px;padding:10px;text-align:center;font-size:12px;font-weight:700;color:#16352E">
+                  Concluir etapa ✓
+                </div>
+              </div>
+              <!-- A seguir -->
+              <div style="padding:0 12px">
+                <div style="font-size:8px;text-align:center;color:#9CA3AF;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">A Seguir</div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;border-radius:12px;background:#fff;border:1px solid #E7E0D0;margin-bottom:5px">
+                  <div>
+                    <div style="font-size:10px;font-weight:600;color:#16352E">Cozinhar mandioquinha</div>
+                    <div style="font-size:8px;color:#9CA3AF">Purê de Mandioquinha</div>
+                  </div>
+                  <span style="font-size:8px;color:#3B82F6;background:#EFF6FF;padding:2px 6px;border-radius:6px;font-weight:600;white-space:nowrap">ESPERA ~25min</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;border-radius:12px;background:#fff;border:1px solid #E7E0D0">
+                  <div>
+                    <div style="font-size:10px;font-weight:600;color:#16352E">Aguardar forno aquecer</div>
+                    <div style="font-size:8px;color:#9CA3AF">Legumes Assados</div>
+                  </div>
+                  <span style="font-size:8px;color:#3B82F6;background:#EFF6FF;padding:2px 6px;border-radius:6px;font-weight:600;white-space:nowrap">ESPERA ~10min</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="max-w-md">
+          <div class="inline-flex items-center gap-2 bg-lime/15 border border-lime/40 rounded-full px-3 py-1.5 text-xs text-limeDeep font-600 mb-5">
+            <i class="fa-solid fa-microphone"></i> Passo 3 de 3
+          </div>
+          <h3 class="font-display font-700 text-2xl sm:text-3xl text-ink leading-tight">
+            Mão na panela. O Atteek cuida do resto.
+          </h3>
+          <p class="text-muted mt-4 leading-relaxed">
+            Durante o preparo, você não precisa tocar no celular. Diga <strong class="text-ink">"próximo"</strong> e a etapa avança sozinha. Está de mão suja? O sensor de proximidade detecta — zero toques necessários.
+          </p>
+          <div class="mt-5 card rounded-2xl p-4 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-lime flex items-center justify-center text-2xl flex-shrink-0">🎙️</div>
+            <div>
+              <p class="font-display font-600 text-ink">Diga "próximo"</p>
+              <p class="text-muted text-sm mt-0.5">A etapa avança. Mãos 100% livres durante todo o preparo.</p>
+            </div>
+          </div>
+          <ul class="mt-5 space-y-3">
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+              <span class="text-sm text-ink">25 etapas organizadas — nenhuma panela parada esperando você decidir</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+              <span class="text-sm text-ink">Etapas críticas destacadas para você não errar a ordem</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+              <span class="text-sm text-ink">Cronômetro ao vivo — compare seu tempo com o estimado</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ QUOTE ═══ -->
+<section class="py-12 sm:py-16 bg-paper/60 border-y border-line">
+  <div class="max-w-2xl mx-auto px-5 sm:px-8 text-center reveal">
+    <div class="text-4xl mb-5">🍱</div>
+    <blockquote class="font-display font-600 text-xl sm:text-2xl text-ink leading-snug">
+      "Cronometrei: cortei <span class="text-gradient">1h 10min do meu domingo.</span><br class="hidden sm:block" /> A tarde voltou a ser minha."
+    </blockquote>
+    <p class="text-muted mt-4 text-sm">Marina R. — Analista, marmita todo dia</p>
+  </div>
+</section>
+
+<!-- ═══ CTA FINAL ═══ -->
+<section id="cadastro" class="relative py-16 sm:py-24 overflow-hidden grid-bg">
+  <div class="aurora bg-lime/40 w-[28rem] h-[28rem] -bottom-32 -left-20"></div>
+  <div class="aurora bg-mustard/30 w-[24rem] h-[24rem] -top-20 -right-20"></div>
+  <div class="relative z-10 max-w-2xl mx-auto px-5 sm:px-8 text-center reveal">
+    <img src="atteek-mascot.png" alt="Atteek" class="w-16 h-16 mx-auto rounded-2xl object-cover ring-1 ring-line shadow-soft mb-6" />
+    <h2 class="font-display font-700 text-2xl sm:text-4xl text-ink">
+      Seu próximo domingo<br class="hidden sm:block" />
+      pode ser <span class="text-gradient">diferente.</span>
+    </h2>
+    <p class="text-muted mt-4 text-base max-w-sm mx-auto">
+      Cadastre-se grátis e faça seu primeiro preparo com o roteiro otimizado ainda hoje.
+    </p>
+    <form id="final-form" class="mt-7 flex flex-col sm:flex-row gap-3 max-w-md mx-auto" novalidate>
+      <input id="final-email" type="email" placeholder="Seu melhor e-mail" autocomplete="email"
+        class="flex-1 px-5 py-4 rounded-2xl border border-line bg-white text-ink placeholder-muted/60 text-sm focus:outline-none focus:ring-2 focus:ring-lime/60 focus:border-lime transition" required />
+      <button type="submit" id="final-btn" class="cta-pulse shine inline-flex items-center justify-center gap-2 bg-lime text-ink font-display font-700 text-sm px-6 py-4 rounded-2xl hover:scale-[1.02] transition-all whitespace-nowrap">
+        Cadastre-se grátis <i class="fa-solid fa-arrow-right text-xs"></i>
+      </button>
+    </form>
+    <p id="final-error" class="hidden text-red-500 text-xs mt-2">Por favor, insira um e-mail válido.</p>
+    <p class="text-sm text-muted mt-4">
+      <i class="fa-solid fa-lock text-limeDeep mr-1"></i> Sem cartão &nbsp;·&nbsp; Acesso grátis
+    </p>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="border-t border-line bg-paper/80">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted">
+    <div class="flex items-center gap-2.5">
+      <img src="atteek-mascot.png" alt="Atteek" class="w-7 h-7 rounded-lg object-cover ring-1 ring-line" />
+      <span class="font-display font-700 text-lg text-ink">atteek</span>
+    </div>
+    <div class="flex gap-6">
+      <a href="#" class="hover:text-limeDeep transition-colors">Termos de uso</a>
+      <a href="#" class="hover:text-limeDeep transition-colors">Privacidade</a>
+      <a href="mailto:admin@atteek.com" class="hover:text-limeDeep transition-colors">Contato</a>
+    </div>
+    <p>© 2026 Atteek</p>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div id="toast" class="card rounded-2xl px-5 py-4 shadow-softer flex items-center gap-3">
+  <div class="w-8 h-8 rounded-full bg-lime/20 flex items-center justify-center text-limeDeep shrink-0">
+    <i class="fa-solid fa-check"></i>
+  </div>
+  <div>
+    <p class="font-600 text-ink text-sm">Cadastro feito! Verifique seu e-mail.</p>
+    <p class="text-muted text-xs">Enviamos o link de acesso para você.</p>
+  </div>
+</div>
+
+<script>
+  var TABS = 3;
+  var DURATION = 5000;
+  var current = 0;
+  var timer = null;
+
+  function activateTab(idx) {
+    for (var i = 0; i < TABS; i++) {
+      var tab = document.getElementById('tab-' + i);
+      var pb  = document.getElementById('pb-' + i);
+      var pan = document.getElementById('panel-' + i);
+      tab.classList.toggle('active', i === idx);
+      pan.classList.toggle('active', i === idx);
+      pan.style.display = (i === idx) ? 'block' : 'none';
+      pb.style.transition = 'none';
+      pb.style.width = '0';
     }
-
-    document.getElementById('hero-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      submitEmail(
-        document.getElementById('hero-email').value.trim(),
-        document.getElementById('hero-error'),
-        document.getElementById('hero-btn')
-      );
-    });
-
-    document.getElementById('final-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      submitEmail(
-        document.getElementById('final-email').value.trim(),
-        document.getElementById('final-error'),
-        document.getElementById('final-btn')
-      );
-    });
-
-    function showToast() {
-      var t = document.getElementById('toast');
-      t.classList.add('show');
-      setTimeout(function () { t.classList.remove('show'); }, 5000);
-    }
-
-    // Reveal on scroll
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    current = idx;
+    // Trigger progress bar
+    var activePb = document.getElementById('pb-' + idx);
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        activePb.style.transition = 'width ' + DURATION + 'ms linear';
+        activePb.style.width = '100%';
       });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
-
-    // Nav shadow on scroll
-    var header = document.querySelector('header');
-    window.addEventListener('scroll', function () {
-      if (window.scrollY > 20) header.classList.add('shadow-soft');
-      else header.classList.remove('shadow-soft');
     });
-  </script>
+  }
+
+  function nextTab() { activateTab((current + 1) % TABS); }
+
+  function startAuto() {
+    clearInterval(timer);
+    timer = setInterval(nextTab, DURATION);
+  }
+
+  // Init panels display
+  document.getElementById('panel-0').style.display = 'block';
+  document.getElementById('panel-1').style.display = 'none';
+  document.getElementById('panel-2').style.display = 'none';
+  activateTab(0);
+  startAuto();
+
+  for (var t = 0; t < TABS; t++) {
+    (function(idx) {
+      document.getElementById('tab-' + idx).addEventListener('click', function() {
+        activateTab(idx);
+        startAuto();
+      });
+    })(t);
+  }
+
+  // Form submission
+  var API_URL = 'https://app.atteek.com/api/auth/instagram-entry';
+
+  function submitEmail(email, errorEl, btn) {
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
+      errorEl.classList.remove('hidden');
+      return;
+    }
+    errorEl.classList.add('hidden');
+    var orig = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Aguarde...';
+    fetch(API_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email:email}) })
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        if (d.ok) { showToast(); btn.innerHTML = '<i class="fa-solid fa-check"></i> E-mail enviado!'; }
+        else { btn.disabled=false; btn.innerHTML=orig; errorEl.textContent=d.error||'Erro. Tente novamente.'; errorEl.classList.remove('hidden'); }
+      })
+      .catch(function() { btn.disabled=false; btn.innerHTML=orig; errorEl.textContent='Erro de conexão.'; errorEl.classList.remove('hidden'); });
+  }
+
+  document.getElementById('hero-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    submitEmail(document.getElementById('hero-email').value.trim(), document.getElementById('hero-error'), document.getElementById('hero-btn'));
+  });
+  document.getElementById('final-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    submitEmail(document.getElementById('final-email').value.trim(), document.getElementById('final-error'), document.getElementById('final-btn'));
+  });
+
+  function showToast() {
+    var t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(function() { t.classList.remove('show'); }, 5000);
+  }
+
+  // Reveal on scroll
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+
+  // Nav shadow
+  var hdr = document.querySelector('header');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 20) hdr.classList.add('shadow-soft'); else hdr.classList.remove('shadow-soft');
+  });
+</script>
 </body>
 </html>
