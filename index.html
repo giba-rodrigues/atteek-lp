@@ -11,6 +11,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1894373907950531');
+    fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1894373907950531&ev=PageView&noscript=1"/></noscript>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -45,6 +57,21 @@
     .reveal.in{opacity:1;transform:none}
     .grid-bg{background-image:linear-gradient(rgba(28,122,99,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(28,122,99,.05) 1px,transparent 1px);background-size:44px 44px}
 
+    /* Phone frame */
+    .phone-wrap{width:280px;flex-shrink:0}
+    .phone-outer{background:#1a1a1a;border-radius:44px;padding:10px;box-shadow:0 40px 80px rgba(22,53,46,.28),0 10px 30px rgba(22,53,46,.14),inset 0 0 0 1px rgba(255,255,255,.06)}
+    .phone-screen{background:#FAF7EF;border-radius:36px;height:540px;overflow:hidden;position:relative;font-family:'Inter',sans-serif}
+    @media(max-width:640px){
+      .phone-wrap{width:min(272px,82vw);margin-left:auto;margin-right:auto}
+      .phone-screen{height:clamp(480px,156vw,524px)}
+    }
+    /* Demo panels */
+    .demo-panel{display:block}
+    .demo-panel + .demo-panel{margin-top:64px;padding-top:64px;border-top:1px solid #E7E0D0}
+    @media(max-width:640px){.demo-panel + .demo-panel{margin-top:40px;padding-top:40px}}
+    /* Equalizer animation */
+    @keyframes eq{0%,100%{height:4px}50%{height:14px}}
+    .eq-bar{display:inline-block;width:3px;border-radius:2px;background:#8BD11F;animation:eq 1s ease-in-out infinite}
     /* Instagram modal */
     #ig-modal{position:fixed;inset:0;z-index:9000;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.5)}
     #ig-modal.open{display:flex}
@@ -139,99 +166,197 @@
   </div>
 </section>
 
-<!-- ═══ COMO FUNCIONA ═══ -->
-<section id="como-funciona" class="relative py-16 sm:py-24 bg-paper/60 border-y border-line">
-  <div class="max-w-6xl mx-auto px-5 sm:px-8">
-
-    <div class="text-center max-w-2xl mx-auto reveal">
-      <span class="text-teal font-600 text-sm tracking-widest uppercase">Simples assim</span>
-      <h2 class="font-display font-700 text-3xl sm:text-5xl mt-3 leading-tight text-ink">
-        Do caos ao plano em <span class="text-gradient">3 passos</span>
-      </h2>
-      <p class="text-muted mt-5 text-base sm:text-lg">Configura uma vez. Depois é só escolher e cozinhar.</p>
-    </div>
-
-
-    <div class="grid md:grid-cols-3 gap-5 sm:gap-6 mt-12 sm:mt-14 relative">
-      <div class="hidden md:block absolute top-16 left-[16%] right-[16%] h-px bg-gradient-to-r from-lime/0 via-teal/40 to-lime/0"></div>
-
-      <div class="reveal relative">
-        <div class="card rounded-3xl p-7 h-full hover:-translate-y-1 transition-all">
-          <div class="w-14 h-14 rounded-2xl bg-lime text-ink font-display font-700 text-2xl flex items-center justify-center mb-5">1</div>
-          <h3 class="font-display font-600 text-xl text-ink">Escolha as receitas</h3>
-          <p class="text-muted mt-3 leading-relaxed">Monte o cardápio da semana e diga quantas marmitas de cada tamanho você vai levar.</p>
-        </div>
-      </div>
-
-      <div class="reveal relative" style="transition-delay:.08s">
-        <div class="card rounded-3xl p-7 h-full hover:-translate-y-1 transition-all">
-          <div class="w-14 h-14 rounded-2xl bg-lime text-ink font-display font-700 text-2xl flex items-center justify-center mb-5">2</div>
-          <h3 class="font-display font-600 text-xl text-ink">Aperte otimizar</h3>
-          <p class="text-muted mt-3 leading-relaxed">Em segundos, o Atteek devolve o roteiro mais rápido possível + a lista de compras consolidada.</p>
-        </div>
-      </div>
-
-      <div class="reveal relative" style="transition-delay:.16s">
-        <div class="card rounded-3xl p-7 h-full hover:-translate-y-1 transition-all">
-          <div class="w-14 h-14 rounded-2xl bg-lime text-ink font-display font-700 text-2xl flex items-center justify-center mb-5">3</div>
-          <h3 class="font-display font-600 text-xl text-ink">Cozinhe guiado</h3>
-          <p class="text-muted mt-3 leading-relaxed">Siga a timeline com cronômetro ao vivo, avance por voz e termine antes do que imaginava.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ DEPOIMENTOS ═══ -->
-<section class="relative py-16 sm:py-24 bg-paper/60 border-y border-line overflow-hidden">
-  <div class="aurora bg-teal/20 w-[26rem] h-[26rem] top-0 -left-24"></div>
+<!-- ═══ APP DEMO ═══ -->
+<section class="relative py-16 sm:py-24 overflow-hidden">
+  <div class="aurora bg-lime/20 w-[28rem] h-[28rem] top-0 -right-24"></div>
   <div class="relative z-10 max-w-6xl mx-auto px-5 sm:px-8">
-    <div class="text-center max-w-2xl mx-auto reveal mb-12">
-      <span class="text-teal font-600 text-sm tracking-widest uppercase">Quem cronometrou</span>
-      <h2 class="font-display font-700 text-3xl sm:text-5xl leading-tight mt-3 text-ink">Não volta atrás <span class="text-gradient">nunca mais</span></h2>
+
+    <div class="text-center reveal mb-10 sm:mb-14">
+      <span class="text-teal font-600 text-sm tracking-widest uppercase">Veja por dentro</span>
+      <h2 class="font-display font-700 text-2xl sm:text-4xl mt-2 text-ink">
+        Do caos ao plano em <span class="text-gradient">segundos</span>
+      </h2>
+      <p class="text-muted mt-3 text-sm sm:text-base max-w-lg mx-auto">
+        Cada tela foi pensada para te fazer gastar menos tempo — e ter mais resultado.
+      </p>
     </div>
-    <div class="grid md:grid-cols-3 gap-5 sm:gap-6">
-      <figure class="reveal card rounded-3xl p-7 flex flex-col">
-        <div class="text-mustard mb-4 text-sm">
-          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-        </div>
-        <blockquote class="text-ink/90 leading-relaxed flex-1 text-sm sm:text-base">"Eu ficava umas 3 horas na cozinha todo domingo e chegava na segunda exausta. Agora faço tudo em pouco mais de 1 hora e ainda sobra tempo pra descansar. Foi a melhor mudança de hábito que fiz."</blockquote>
-        <figcaption class="flex items-center gap-3 mt-6">
-          <img class="w-11 h-11 rounded-full object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=90&q=80&auto=format&fit=crop" alt="" />
-          <div>
-            <p class="font-600 text-ink text-sm">Marina R.</p>
-            <p class="text-xs text-muted">Analista · marmita todo dia</p>
+
+    <!-- PANEL 1: Escolha -->
+    <div class="demo-panel active" id="panel-0">
+      <div class="flex flex-col lg:flex-row-reverse items-center gap-6 lg:gap-16 lg:justify-center">
+        <div class="max-w-md w-full">
+          <div class="inline-flex items-center gap-2 bg-lime/15 border border-lime/40 rounded-full px-3 py-1.5 text-xs text-limeDeep font-600 mb-5">
+            <i class="fa-solid fa-layer-group"></i> Passo 1 de 3
           </div>
-        </figcaption>
-      </figure>
-      <figure class="reveal card rounded-3xl p-7 flex flex-col" style="transition-delay:.06s">
-        <div class="text-mustard mb-4 text-sm">
-          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <h3 class="font-display font-700 text-2xl sm:text-3xl text-ink leading-tight">
+            Escolha suas receitas e decida a semana em segundos
+          </h3>
+          <p class="text-muted mt-4 leading-relaxed">
+            Catálogo completo organizado por categorias. Frango, Carne, Suíno, Massas e mais. Cada receita já traz o tempo total calculado para as suas marmitas — sem surpresa na cozinha.
+          </p>
+          <ul class="hidden lg:block mt-6 space-y-3">
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i><span class="text-sm text-ink">Filtros por equipamento (fogão, forno, airfryer, pressão) e tempo</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i><span class="text-sm text-ink">Veja o tempo estimado antes de confirmar o cardápio</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i><span class="text-sm text-ink">Favorite receitas para reutilizar na semana seguinte</span></li>
+          </ul>
         </div>
-        <blockquote class="text-ink/90 leading-relaxed flex-1 text-sm sm:text-base">"Antes eu ficava nervoso na cozinha, sempre esquecendo alguma coisa no fogo ou perdendo tempo esperando uma coisa pra começar outra. Agora o app me diz exatamente o que fazer. É tranquilidade total."</blockquote>
-        <figcaption class="flex items-center gap-3 mt-6">
-          <img class="w-11 h-11 rounded-full object-cover" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=90&q=80&auto=format&fit=crop" alt="" />
-          <div>
-            <p class="font-600 text-ink text-sm">Rafael M.</p>
-            <p class="text-xs text-muted">Dev · leva marmita pra TI</p>
+        <div class="phone-wrap">
+          <div class="phone-outer">
+            <div class="phone-screen">
+              <div style="background:#FAF7EF;padding:10px 14px 4px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;font-weight:600;color:#16352E">19:21</span><span style="font-size:10px;color:#5C6A60">●●● ▲ 🔋</span></div>
+              <div style="padding:4px 14px 10px;display:flex;align-items:center;gap:8px"><img src="atteek-mascot.png" style="width:30px;height:30px;border-radius:9px;object-fit:cover" alt="" /><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:#16352E">Atteek</span></div>
+              <div style="padding:0 14px 10px"><div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;color:#16352E">Olá, Maria! 👋</div><div style="font-size:12px;color:#5C6A60;margin-top:2px">Bora escolher a próxima marmita? 😀</div></div>
+              <div style="margin:0 14px 14px;background:#fff;border:1px solid #E7E0D0;border-radius:22px;padding:9px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:12px;color:#9CA3AF">🔍</span><span style="font-size:12px;color:#9CA3AF">Buscar receita...</span></div>
+              <div style="padding:0 14px 8px"><span style="font-size:9px;font-weight:700;color:#5C6A60;letter-spacing:1.5px;text-transform:uppercase">Categorias</span></div>
+              <div style="padding:0 12px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#FEF3C7;border-radius:18px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:26px">🍗</span><span style="font-size:12px;font-weight:700;color:#16352E">Frango</span></div>
+                <div style="background:#FEE2E2;border-radius:18px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:26px">🥩</span><span style="font-size:12px;font-weight:700;color:#16352E">Carne</span></div>
+                <div style="background:#FED7AA;border-radius:18px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:26px">🐷</span><span style="font-size:12px;font-weight:700;color:#16352E">Suíno</span></div>
+                <div style="background:#FEF9C3;border-radius:18px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:26px">🍝</span><span style="font-size:12px;font-weight:700;color:#16352E">Massas</span></div>
+              </div>
+              <div style="position:absolute;bottom:0;left:0;right:0;border-top:1px solid #E7E0D0;background:#fff;padding:8px 14px 12px;display:flex;justify-content:space-around">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px"><span style="font-size:14px">🍽️</span><span style="font-size:9px;font-weight:700;color:#6FB014">Receitas</span></div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px"><span style="font-size:14px">📊</span><span style="font-size:9px;color:#9CA3AF">Histórico</span></div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px"><span style="font-size:14px">👤</span><span style="font-size:9px;color:#9CA3AF">Conta</span></div>
+              </div>
+            </div>
           </div>
-        </figcaption>
-      </figure>
-      <figure class="reveal card rounded-3xl p-7 flex flex-col" style="transition-delay:.12s">
-        <div class="text-mustard mb-4 text-sm">
-          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
         </div>
-        <blockquote class="text-ink/90 leading-relaxed flex-1 text-sm sm:text-base">"Eu detestava aquela sensação de passar a tarde inteira na cozinha e ainda ter a impressão de que deu errado. Com o Atteek ficou mais rápido, mais organizado e eu saio da cozinha satisfeita toda vez."</blockquote>
-        <figcaption class="flex items-center gap-3 mt-6">
-          <img class="w-11 h-11 rounded-full object-cover" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=90&q=80&auto=format&fit=crop" alt="" />
-          <div>
-            <p class="font-600 text-ink text-sm">Camila T.</p>
-            <p class="text-xs text-muted">Professora · marmita pra escola</p>
-          </div>
-        </figcaption>
-      </figure>
+        <div class="w-full max-w-md lg:hidden">
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i><span class="text-sm text-ink">Filtros por equipamento (fogão, forno, airfryer, pressão) e tempo</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i><span class="text-sm text-ink">Veja o tempo estimado antes de confirmar o cardápio</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i><span class="text-sm text-ink">Favorite receitas para reutilizar na semana seguinte</span></li>
+          </ul>
+        </div>
+      </div>
     </div>
+
+    <!-- PANEL 2: Otimize -->
+    <div class="demo-panel" id="panel-1">
+      <div class="flex flex-col lg:flex-row-reverse items-center gap-6 lg:gap-16 lg:justify-center">
+        <div class="max-w-md w-full">
+          <div class="inline-flex items-center gap-2 bg-lime/15 border border-lime/40 rounded-full px-3 py-1.5 text-xs text-limeDeep font-600 mb-5">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Passo 2 de 3
+          </div>
+          <h3 class="font-display font-700 text-2xl sm:text-3xl text-ink leading-tight">
+            O algoritmo monta o plano. Você só precisa cozinhar.
+          </h3>
+          <p class="text-muted mt-4 leading-relaxed">
+            O Atteek usa o <strong class="text-ink">algoritmo de Caminho Crítico</strong> — a mesma lógica usada em gestão de projetos industriais — para montar o roteiro de menor tempo possível com todas as suas receitas em paralelo.
+          </p>
+          <div class="mt-5 card rounded-2xl p-4 flex items-center gap-4">
+            <div class="text-center flex-1"><p class="text-muted text-xs line-through">1h 42min</p><p class="text-muted text-sm font-600">Uma por vez</p></div>
+            <div class="flex items-center justify-center gap-2"><div class="h-px w-5 bg-line"></div><span class="text-limeDeep font-700 text-sm bg-lime/15 px-2 py-0.5 rounded-full">−53%</span><div class="h-px w-5 bg-line"></div></div>
+            <div class="text-center flex-1"><p class="font-display font-700 text-xl text-gradient">47min</p><p class="text-limeDeep text-sm font-600">Com Atteek</p></div>
+          </div>
+          <ul class="hidden lg:block mt-5 space-y-3">
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i><span class="text-sm text-ink">Roteiro gerado em menos de 60 segundos</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i><span class="text-sm text-ink">Respeita seu fogão, forno e equipamentos reais</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i><span class="text-sm text-ink">Lista de compras automática com todas as quantidades certas</span></li>
+          </ul>
+        </div>
+        <div class="phone-wrap">
+          <div class="phone-outer">
+            <div class="phone-screen">
+              <div style="background:#FAF7EF;padding:10px 14px 4px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;font-weight:600;color:#16352E">19:23</span><span style="font-size:10px;color:#5C6A60">●●● ▲ 🔋</span></div>
+              <div style="padding:8px 14px 2px"><div style="display:flex;align-items:baseline;gap:6px"><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:30px;color:#16352E">47min</span><span style="font-size:11px;color:#5C6A60">de preparo</span></div><div style="font-size:11px;color:#5C6A60;margin-top:2px">vs 1h 42min sequencial — <span style="color:#6FB014;font-weight:700">53% mais rápido ↑</span></div></div>
+              <div style="display:flex;margin:10px 12px;background:#F2ECDD;border-radius:12px;padding:3px;gap:3px"><div style="flex:1;background:#fff;border-radius:9px;padding:6px;text-align:center;font-size:11px;font-weight:700;color:#16352E">Roteiro (25)</div><div style="flex:1;padding:6px;text-align:center;font-size:11px;color:#9CA3AF">Lista (15)</div></div>
+              <div style="padding:4px 12px">
+                <div style="font-size:8px;text-transform:uppercase;letter-spacing:1px;color:#9CA3AF;margin-bottom:6px;font-weight:600">Linha do Tempo — Por Tarefa</div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px"><span style="font-size:8px;color:#16352E;width:68px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0;font-weight:600">| Preparar mandio...</span><div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative"><div style="position:absolute;left:0%;width:17%;height:100%;background:#8BD11F;border-radius:4px"></div></div></div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px"><span style="font-size:8px;color:#16352E;width:68px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0;font-weight:600">| Cozinhar mandio...</span><div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative"><div style="position:absolute;left:17%;width:79%;height:100%;background:#93C5FD;border-radius:4px"></div></div></div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px"><span style="font-size:8px;color:#5C6A60;width:68px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0">Pré-aquecer forno</span><div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative"><div style="position:absolute;left:4%;width:17%;height:100%;background:#8BD11F;border-radius:4px"></div></div></div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px"><span style="font-size:8px;color:#5C6A60;width:68px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0">Aguardar forno...</span><div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative"><div style="position:absolute;left:21%;width:25%;height:100%;background:#93C5FD;border-radius:4px"></div></div></div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px"><span style="font-size:8px;color:#5C6A60;width:68px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0">Preparar legumes</span><div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative"><div style="position:absolute;left:21%;width:13%;height:100%;background:#8BD11F;border-radius:4px"></div></div></div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px"><span style="font-size:8px;color:#5C6A60;width:68px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0">Temperar legumes</span><div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative"><div style="position:absolute;left:34%;width:9%;height:100%;background:#8BD11F;border-radius:4px"></div></div></div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px"><span style="font-size:8px;color:#5C6A60;width:68px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0">Assar legumes</span><div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative"><div style="position:absolute;left:47%;width:42%;height:100%;background:#93C5FD;border-radius:4px"></div></div></div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px"><span style="font-size:8px;color:#5C6A60;width:68px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0">Selar carne moída</span><div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative"><div style="position:absolute;left:55%;width:9%;height:100%;background:#8BD11F;border-radius:4px"></div></div></div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px"><span style="font-size:8px;color:#5C6A60;width:68px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0">Cozinhar carne...</span><div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative"><div style="position:absolute;left:64%;width:17%;height:100%;background:#93C5FD;border-radius:4px"></div></div></div>
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px"><span style="font-size:8px;color:#5C6A60;width:68px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0">Porcionar e arm...</span><div style="flex:1;height:7px;background:#F2ECDD;border-radius:4px;position:relative"><div style="position:absolute;left:81%;width:9%;height:100%;background:#C4B5FD;border-radius:4px"></div></div></div>
+                <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap"><span style="font-size:8px;color:#5C6A60"><span style="color:#8BD11F">●</span> Ação</span><span style="font-size:8px;color:#5C6A60"><span style="color:#93C5FD">●</span> Espera</span><span style="font-size:8px;color:#5C6A60"><span style="color:#C4B5FD">●</span> Armaz.</span><span style="font-size:8px;color:#5C6A60">| Crítico</span></div>
+              </div>
+              <div style="padding:8px 12px 12px"><div style="background:#8BD11F;border-radius:16px;padding:13px;text-align:center;font-size:13px;font-weight:700;color:#16352E">▶ Iniciar preparo agora</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="w-full max-w-md lg:hidden">
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i><span class="text-sm text-ink">Roteiro gerado em menos de 60 segundos</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i><span class="text-sm text-ink">Respeita seu fogão, forno e equipamentos reais</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i><span class="text-sm text-ink">Lista de compras automática com todas as quantidades certas</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 3: Cozinhe -->
+    <div class="demo-panel" id="panel-2">
+      <div class="flex flex-col lg:flex-row-reverse items-center gap-6 lg:gap-16 lg:justify-center">
+        <div class="max-w-md w-full">
+          <div class="inline-flex items-center gap-2 bg-lime/15 border border-lime/40 rounded-full px-3 py-1.5 text-xs text-limeDeep font-600 mb-5">
+            <i class="fa-solid fa-microphone"></i> Passo 3 de 3
+          </div>
+          <h3 class="font-display font-700 text-2xl sm:text-3xl text-ink leading-tight">
+            Mão na panela. O Atteek cuida do resto.
+          </h3>
+          <p class="text-muted mt-4 leading-relaxed">
+            Durante o preparo, você não precisa tocar no celular. Diga <strong class="text-ink">"próximo"</strong> e a etapa avança sozinha. Está de mão suja? O sensor de proximidade detecta — zero toques necessários.
+          </p>
+          <div class="mt-5 card rounded-2xl p-4 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-lime flex items-center justify-center text-2xl flex-shrink-0">🎙️</div>
+            <div><p class="font-display font-600 text-ink">Diga "próximo"</p><p class="text-muted text-sm mt-0.5">A etapa avança. Mãos 100% livres durante todo o preparo.</p></div>
+          </div>
+          <ul class="hidden lg:block mt-5 space-y-3">
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i><span class="text-sm text-ink">25 etapas organizadas — nenhuma panela parada esperando você decidir</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i><span class="text-sm text-ink">Etapas críticas destacadas para não errar a ordem</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i><span class="text-sm text-ink">Cronômetro ao vivo — compare seu tempo com o estimado</span></li>
+          </ul>
+        </div>
+        <div class="phone-wrap">
+          <div class="phone-outer">
+            <div class="phone-screen" style="background:#FAF7EF">
+              <div style="background:#F97316;padding:8px 14px;display:flex;justify-content:space-between;align-items:center"><div style="background:rgba(255,255,255,.2);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px">🎤</div><span style="font-size:9px;color:rgba(255,255,255,.8)">●●● ▲ 🔋 24%</span></div>
+              <div style="padding:8px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E7E0D0">
+                <div><div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;color:#16352E">0:02</div><div style="font-size:9px;color:#9CA3AF">0/25 etapas</div></div>
+                <div style="text-align:center"><div style="font-size:8px;color:#9CA3AF;text-transform:uppercase;letter-spacing:.5px">PREVISTO</div><div style="font-size:14px;font-weight:700;color:#16352E">47min</div></div>
+                <div style="display:flex;gap:6px"><div style="width:26px;height:26px;background:#F2ECDD;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px">🛒</div><div style="width:26px;height:26px;background:#F2ECDD;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px">⏸</div></div>
+              </div>
+              <div style="padding:7px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #E7E0D0">
+                <div style="width:30px;height:30px;background:#8BD11F;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🎙️</div>
+                <div style="display:flex;align-items:flex-end;gap:2px;height:16px"><span class="eq-bar" style="height:6px;animation-delay:0s"></span><span class="eq-bar" style="height:12px;animation-delay:.12s"></span><span class="eq-bar" style="height:8px;animation-delay:.24s"></span><span class="eq-bar" style="height:14px;animation-delay:.36s"></span><span class="eq-bar" style="height:5px;animation-delay:.48s"></span></div>
+                <span style="font-size:10px;color:#5C6A60;margin-left:auto">diga <strong style="color:#6FB014">"próximo"</strong></span>
+              </div>
+              <div style="margin:10px 12px;background:#fff;border:2px solid #8BD11F;border-radius:18px;padding:12px">
+                <div style="display:flex;gap:5px;margin-bottom:7px"><span style="background:#F2ECDD;color:#16352E;font-size:8px;font-weight:700;padding:3px 7px;border-radius:20px">AÇÃO</span><span style="background:#FEF3C7;color:#92400E;font-size:8px;font-weight:700;padding:3px 7px;border-radius:20px">⚡ crítico</span></div>
+                <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:#16352E;margin-bottom:5px">Preparar mandioquinha</div>
+                <div style="font-size:9px;color:#5C6A60;line-height:1.5;margin-bottom:10px">Lave, descasque e corte em pedaços de 2-3cm para acelerar o cozimento. Coloque em panela média e adicione água fria até cobrir. Pitada de sal.</div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:10px">
+                  <div><div style="font-size:7px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.5px">SEU TEMPO</div><div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:#16352E">0:02</div></div>
+                  <div style="text-align:right"><div style="font-size:7px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.5px">PREVISTO</div><div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:#9CA3AF">2:07</div></div>
+                </div>
+                <div style="background:#8BD11F;border-radius:12px;padding:10px;text-align:center;font-size:12px;font-weight:700;color:#16352E">Concluir etapa ✓</div>
+              </div>
+              <div style="padding:0 12px">
+                <div style="font-size:8px;text-align:center;color:#9CA3AF;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">A Seguir</div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;border-radius:12px;background:#fff;border:1px solid #E7E0D0;margin-bottom:5px">
+                  <div><div style="font-size:10px;font-weight:600;color:#16352E">Cozinhar mandioquinha</div><div style="font-size:8px;color:#9CA3AF">Purê de Mandioquinha</div></div>
+                  <span style="font-size:8px;color:#3B82F6;background:#EFF6FF;padding:2px 6px;border-radius:6px;font-weight:600;white-space:nowrap">ESPERA ~25min</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-full max-w-md lg:hidden">
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i><span class="text-sm text-ink">25 etapas organizadas — nenhuma panela parada esperando você decidir</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i><span class="text-sm text-ink">Etapas críticas destacadas para não errar a ordem</span></li>
+            <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i><span class="text-sm text-ink">Cronômetro ao vivo — compare seu tempo com o estimado</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -379,6 +504,49 @@
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DEPOIMENTOS ═══ -->
+<section class="relative py-16 sm:py-24 bg-paper/60 border-y border-line overflow-hidden">
+  <div class="aurora bg-teal/20 w-[26rem] h-[26rem] top-0 -left-24"></div>
+  <div class="relative z-10 max-w-6xl mx-auto px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto reveal mb-12">
+      <span class="text-teal font-600 text-sm tracking-widest uppercase">Quem cronometrou</span>
+      <h2 class="font-display font-700 text-3xl sm:text-5xl leading-tight mt-3 text-ink">Não volta atrás <span class="text-gradient">nunca mais</span></h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5 sm:gap-6">
+      <figure class="reveal card rounded-3xl p-7 flex flex-col">
+        <div class="text-mustard mb-4 text-sm">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <blockquote class="text-ink/90 leading-relaxed flex-1 text-sm sm:text-base">"Eu ficava umas 3 horas na cozinha todo domingo e chegava na segunda exausta. Agora faço tudo em pouco mais de 1 hora e ainda sobra tempo pra descansar. Foi a melhor mudança de hábito que fiz."</blockquote>
+        <figcaption class="flex items-center gap-3 mt-6">
+          <img class="w-11 h-11 rounded-full object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=90&q=80&auto=format&fit=crop" alt="" />
+          <div><p class="font-600 text-ink text-sm">Marina R.</p><p class="text-xs text-muted">Analista · marmita todo dia</p></div>
+        </figcaption>
+      </figure>
+      <figure class="reveal card rounded-3xl p-7 flex flex-col" style="transition-delay:.06s">
+        <div class="text-mustard mb-4 text-sm">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <blockquote class="text-ink/90 leading-relaxed flex-1 text-sm sm:text-base">"Antes eu ficava nervoso na cozinha, sempre esquecendo alguma coisa no fogo ou perdendo tempo esperando uma coisa pra começar outra. Agora o app me diz exatamente o que fazer. É tranquilidade total."</blockquote>
+        <figcaption class="flex items-center gap-3 mt-6">
+          <img class="w-11 h-11 rounded-full object-cover" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=90&q=80&auto=format&fit=crop" alt="" />
+          <div><p class="font-600 text-ink text-sm">Rafael M.</p><p class="text-xs text-muted">Dev · leva marmita pra TI</p></div>
+        </figcaption>
+      </figure>
+      <figure class="reveal card rounded-3xl p-7 flex flex-col" style="transition-delay:.12s">
+        <div class="text-mustard mb-4 text-sm">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <blockquote class="text-ink/90 leading-relaxed flex-1 text-sm sm:text-base">"Eu detestava aquela sensação de passar a tarde inteira na cozinha e ainda ter a impressão de que deu errado. Com o Atteek ficou mais rápido, mais organizado e eu saio da cozinha satisfeita toda vez."</blockquote>
+        <figcaption class="flex items-center gap-3 mt-6">
+          <img class="w-11 h-11 rounded-full object-cover" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=90&q=80&auto=format&fit=crop" alt="" />
+          <div><p class="font-600 text-ink text-sm">Camila T.</p><p class="text-xs text-muted">Professora · marmita pra escola</p></div>
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
