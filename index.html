@@ -46,24 +46,22 @@
     .grid-bg{background-image:linear-gradient(rgba(28,122,99,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(28,122,99,.05) 1px,transparent 1px);background-size:44px 44px}
 
     /* Phone frame */
-    .phone-wrap{width:210px;flex-shrink:0}
-    .phone-outer{background:#1a1a1a;border-radius:40px;padding:8px;box-shadow:0 40px 80px rgba(22,53,46,.28),0 10px 30px rgba(22,53,46,.14),inset 0 0 0 1px rgba(255,255,255,.06)}
-    .phone-screen{background:#FAF7EF;border-radius:32px;height:430px;overflow:hidden;position:relative;font-family:'Inter',sans-serif}
-    @media(max-width:640px){.phone-wrap{width:172px}.phone-screen{height:340px}}
+    .phone-wrap{width:280px;flex-shrink:0}
+    .phone-outer{background:#1a1a1a;border-radius:44px;padding:10px;box-shadow:0 40px 80px rgba(22,53,46,.28),0 10px 30px rgba(22,53,46,.14),inset 0 0 0 1px rgba(255,255,255,.06)}
+    .phone-screen{background:#FAF7EF;border-radius:36px;height:540px;overflow:hidden;position:relative;font-family:'Inter',sans-serif}
+    @media(max-width:640px){
+      .phone-wrap{width:min(272px,82vw);margin-left:auto;margin-right:auto}
+      .phone-screen{height:clamp(480px,156vw,524px)}
+    }
     /* Instagram modal */
     #ig-modal{position:fixed;inset:0;z-index:9000;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.5)}
     #ig-modal.open{display:flex}
     #ig-sheet{background:#fff;border-radius:24px 24px 0 0;padding:28px 24px 40px;max-width:420px;width:100%;text-align:center}
 
-    /* Demo panels */
-    .demo-panel{display:none}
-    .demo-panel.active{display:block;animation:panelIn .4s ease}
-    @keyframes panelIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-
-    /* Tab buttons */
-    .demo-tab{border:2px solid #E7E0D0;background:#fff;transition:border-color .2s,background .2s;cursor:pointer;text-align:left;width:100%}
-    @media(min-width:640px){.demo-tab{width:auto}}
-    .demo-tab.active{border-color:#8BD11F;background:rgba(139,209,31,.07)}
+    /* Demo panels — all visible stacked */
+    .demo-panel{display:block}
+    .demo-panel + .demo-panel{margin-top:64px;padding-top:64px;border-top:1px solid #E7E0D0}
+    @media(max-width:640px){.demo-panel + .demo-panel{margin-top:40px;padding-top:40px}}
 
     /* Equalizer animation */
     @keyframes eq{0%,100%{height:4px}50%{height:14px}}
@@ -173,26 +171,11 @@
       </p>
     </div>
 
-    <!-- Tabs: stack on mobile, row on sm+ -->
-    <div class="flex flex-col sm:flex-row sm:justify-center gap-3 mb-10">
-      <button class="demo-tab rounded-2xl px-5 py-3 active" id="tab-0" data-tab="0">
-        <p class="font-display font-600 text-sm text-ink">01 — Escolha</p>
-        <p class="text-muted text-xs mt-0.5">Catálogo de receitas</p>
-      </button>
-      <button class="demo-tab rounded-2xl px-5 py-3" id="tab-1" data-tab="1">
-        <p class="font-display font-600 text-sm text-ink">02 — Otimize</p>
-        <p class="text-muted text-xs mt-0.5">Plano inteligente</p>
-      </button>
-      <button class="demo-tab rounded-2xl px-5 py-3" id="tab-2" data-tab="2">
-        <p class="font-display font-600 text-sm text-ink">03 — Cozinhe</p>
-        <p class="text-muted text-xs mt-0.5">Guia por voz</p>
-      </button>
-    </div>
 
-    <!-- PANEL 1: Escolha — text first, phone below on mobile -->
+    <!-- PANEL 1: Escolha — title → phone → benefits on mobile -->
     <div class="demo-panel active" id="panel-0">
-      <div class="flex flex-col-reverse lg:flex-row-reverse items-center gap-8 lg:gap-16 lg:justify-center">
-        <!-- Text (top on mobile, right on desktop with flex-row-reverse) -->
+      <div class="flex flex-col lg:flex-row-reverse items-center gap-6 lg:gap-16 lg:justify-center">
+        <!-- Text column: on desktop shows badge+h3+desc+bullets all together (right side) -->
         <div class="max-w-md w-full">
           <div class="inline-flex items-center gap-2 bg-lime/15 border border-lime/40 rounded-full px-3 py-1.5 text-xs text-limeDeep font-600 mb-5">
             <i class="fa-solid fa-layer-group"></i> Passo 1 de 3
@@ -203,10 +186,11 @@
           <p class="text-muted mt-4 leading-relaxed">
             Catálogo completo organizado por categorias. Frango, Carne, Suíno, Massas e mais. Cada receita já traz o tempo total calculado para as suas marmitas — sem surpresa na cozinha.
           </p>
-          <ul class="mt-6 space-y-3">
+          <!-- Desktop-only bullets (hidden on mobile, shown after phone) -->
+          <ul class="hidden lg:block mt-6 space-y-3">
             <li class="flex items-start gap-3">
               <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
-              <span class="text-sm text-ink">Filtros por equipamento (fogão, forno, panela única) e tempo</span>
+              <span class="text-sm text-ink">Filtros por equipamento (fogão, forno, airfryer, pressão) e tempo</span>
             </li>
             <li class="flex items-start gap-3">
               <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
@@ -218,7 +202,7 @@
             </li>
           </ul>
         </div>
-        <!-- Phone (bottom on mobile, left on desktop) -->
+        <!-- Phone (middle on mobile, left on desktop) -->
         <div class="phone-wrap">
           <div class="phone-outer">
             <div class="phone-screen">
@@ -276,12 +260,29 @@
             </div>
           </div>
         </div>
+        <!-- Mobile-only bullets (shown after phone) -->
+        <div class="w-full max-w-md lg:hidden">
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+              <span class="text-sm text-ink">Filtros por equipamento (fogão, forno, airfryer, pressão) e tempo</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+              <span class="text-sm text-ink">Veja o tempo estimado antes de confirmar o cardápio</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+              <span class="text-sm text-ink">Favorite receitas para reutilizar na semana seguinte</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 
     <!-- PANEL 2: Otimize -->
     <div class="demo-panel" id="panel-1">
-      <div class="flex flex-col-reverse lg:flex-row-reverse items-center gap-8 lg:gap-16 lg:justify-center">
+      <div class="flex flex-col lg:flex-row-reverse items-center gap-6 lg:gap-16 lg:justify-center">
         <div class="max-w-md w-full">
           <div class="inline-flex items-center gap-2 bg-lime/15 border border-lime/40 rounded-full px-3 py-1.5 text-xs text-limeDeep font-600 mb-5">
             <i class="fa-solid fa-wand-magic-sparkles"></i> Passo 2 de 3
@@ -307,7 +308,8 @@
               <p class="text-limeDeep text-sm font-600">Com Atteek</p>
             </div>
           </div>
-          <ul class="mt-5 space-y-3">
+          <!-- Desktop-only bullets -->
+          <ul class="hidden lg:block mt-5 space-y-3">
             <li class="flex items-start gap-3">
               <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
               <span class="text-sm text-ink">Roteiro gerado em menos de 60 segundos</span>
@@ -367,12 +369,29 @@
             </div>
           </div>
         </div>
+        <!-- Mobile-only bullets -->
+        <div class="w-full max-w-md lg:hidden">
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+              <span class="text-sm text-ink">Roteiro gerado em menos de 60 segundos</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+              <span class="text-sm text-ink">Respeita seu fogão, forno e equipamentos reais</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+              <span class="text-sm text-ink">Lista de compras automática com todas as quantidades certas</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 
     <!-- PANEL 3: Cozinhe -->
     <div class="demo-panel" id="panel-2">
-      <div class="flex flex-col-reverse lg:flex-row-reverse items-center gap-8 lg:gap-16 lg:justify-center">
+      <div class="flex flex-col lg:flex-row-reverse items-center gap-6 lg:gap-16 lg:justify-center">
         <div class="max-w-md w-full">
           <div class="inline-flex items-center gap-2 bg-lime/15 border border-lime/40 rounded-full px-3 py-1.5 text-xs text-limeDeep font-600 mb-5">
             <i class="fa-solid fa-microphone"></i> Passo 3 de 3
@@ -390,7 +409,8 @@
               <p class="text-muted text-sm mt-0.5">A etapa avança. Mãos 100% livres durante todo o preparo.</p>
             </div>
           </div>
-          <ul class="mt-5 space-y-3">
+          <!-- Desktop-only bullets -->
+          <ul class="hidden lg:block mt-5 space-y-3">
             <li class="flex items-start gap-3">
               <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
               <span class="text-sm text-ink">25 etapas organizadas — nenhuma panela parada esperando você decidir</span>
@@ -469,6 +489,23 @@
             </div>
           </div>
         </div>
+        <!-- Mobile-only bullets -->
+        <div class="w-full max-w-md lg:hidden">
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+              <span class="text-sm text-ink">25 etapas organizadas — nenhuma panela parada esperando você decidir</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+              <span class="text-sm text-ink">Etapas críticas destacadas para não errar a ordem</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+              <span class="text-sm text-ink">Cronômetro ao vivo — compare seu tempo com o estimado</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -528,76 +565,149 @@
 </section>
 
 <!-- ═══ AI RECIPE FEATURE ═══ -->
-<section class="relative py-16 sm:py-20 overflow-hidden">
-  <div class="aurora bg-lime/20 w-[24rem] h-[24rem] top-0 -right-20"></div>
-  <div class="relative z-10 max-w-5xl mx-auto px-5 sm:px-8">
-    <div class="reveal flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
-      <!-- Text side -->
-      <div class="max-w-md w-full">
-        <div class="inline-flex items-center gap-2 bg-lime/15 border border-lime/40 rounded-full px-3 py-1.5 text-xs text-limeDeep font-600 mb-5">
-          <i class="fa-solid fa-wand-magic-sparkles"></i> Novo recurso Premium
+<section class="relative py-16 sm:py-24 overflow-hidden bg-paper/60 border-y border-line">
+  <div class="aurora bg-lime/25 w-[28rem] h-[28rem] top-0 -right-20"></div>
+  <div class="aurora bg-teal/15 w-[22rem] h-[22rem] bottom-0 -left-16"></div>
+  <div class="relative z-10 max-w-6xl mx-auto px-5 sm:px-8">
+
+    <!-- Header -->
+    <div class="text-center reveal mb-12 sm:mb-16">
+      <div class="inline-flex items-center gap-2 bg-lime/15 border border-lime/40 rounded-full px-4 py-1.5 text-xs text-limeDeep font-600 mb-5">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> ✨ Criar com IA
+      </div>
+      <h2 class="font-display font-700 text-2xl sm:text-4xl text-ink leading-tight">
+        Imagine o nome.<br class="hidden sm:block" />
+        <span class="text-gradient">A IA monta o preparo completo.</span>
+      </h2>
+      <p class="text-muted mt-4 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+        Tem aquela receita que você sempre quis tentar, mas não sabe como estruturar o preparo?
+        Com o Atteek, você digita o nome e a IA gera tudo — ingredientes, quantidades e etapas com tempos reais.
+      </p>
+    </div>
+
+    <!-- Steps + phone -->
+    <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-20 lg:justify-center reveal">
+
+      <!-- Steps side -->
+      <div class="max-w-md w-full order-2 lg:order-1">
+
+        <!-- Step 1 -->
+        <div class="flex gap-5 mb-8">
+          <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-lime/20 border border-lime/40 flex items-center justify-center">
+            <span class="font-display font-700 text-limeDeep text-lg">01</span>
+          </div>
+          <div>
+            <h3 class="font-display font-700 text-base text-ink">Você digita o nome da receita</h3>
+            <p class="text-muted text-sm mt-1.5 leading-relaxed">
+              Qualquer receita — "Frango ao limão siciliano", "Moqueca de peixe", "Lasanha de espinafre vegetariana". Se você consegue imaginar, o Atteek consegue gerar.
+            </p>
+          </div>
         </div>
-        <h2 class="font-display font-700 text-2xl sm:text-3xl text-ink leading-tight">
-          Criou o nome da receita.<br>O Atteek criou os passos.
-        </h2>
-        <p class="text-muted mt-4 leading-relaxed">
-          Tem aquela receita da sua mãe, ou algo que você quer testar, mas não sabe nem por onde começar? Digita o nome e a IA gera um roteiro completo, etapa por etapa, já pronto para o preparo. Fica salvo em <strong class="text-ink">Minhas Receitas</strong> pra você usar quando quiser.
-        </p>
-        <ul class="mt-5 space-y-3">
-          <li class="flex items-start gap-3">
-            <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
-            <span class="text-sm text-ink">Funciona com qualquer receita — da mais simples à mais elaborada</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
-            <span class="text-sm text-ink">Gera etapas detalhadas com tempos e dicas de preparo</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
-            <span class="text-sm text-ink">Salva automaticamente para reaproveitamento nas próximas semanas</span>
-          </li>
-        </ul>
-        <div class="mt-6 inline-flex items-center gap-2 bg-lime/10 border border-lime/30 rounded-2xl px-4 py-3 text-sm text-limeDeep font-600">
-          <i class="fa-solid fa-lock-open"></i> Disponível no plano Premium
+
+        <!-- Step 2 -->
+        <div class="flex gap-5 mb-8">
+          <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-teal/10 border border-teal/30 flex items-center justify-center">
+            <span class="font-display font-700 text-teal text-lg">02</span>
+          </div>
+          <div>
+            <h3 class="font-display font-700 text-base text-ink">A IA gera ingredientes e etapas detalhadas</h3>
+            <p class="text-muted text-sm mt-1.5 leading-relaxed">
+              Em segundos, a inteligência artificial produz a lista de ingredientes com quantidades exatas e todas as etapas de preparo com tempos reais — incluindo dicas de chef e qual equipamento usar em cada momento.
+            </p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="text-xs px-2.5 py-1 rounded-full font-600" style="background:#FFF3EE;color:#FF6B35">AÇÃO</span>
+              <span class="text-xs px-2.5 py-1 rounded-full font-600" style="background:#F0F9FF;color:#0EA5E9">ESPERA</span>
+              <span class="text-xs px-2.5 py-1 rounded-full font-600" style="background:#FEFCE8;color:#EAB308">ADIANTAR</span>
+              <span class="text-xs px-2.5 py-1 rounded-full font-600" style="background:#FAF5FF;color:#A855F7">ARMAZENAR</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flex gap-5 mb-8">
+          <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-mustard/15 border border-mustard/30 flex items-center justify-center">
+            <span class="font-display font-700 text-mustard text-lg">03</span>
+          </div>
+          <div>
+            <h3 class="font-display font-700 text-base text-ink">Já salva automaticamente em Minhas Receitas</h3>
+            <p class="text-muted text-sm mt-1.5 leading-relaxed">
+              A receita fica disponível na sua lista imediatamente. Você pode revisar os ingredientes e ajustar etapas quando quiser — ou ir direto pra cozinha.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="flex gap-5">
+          <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-lime/20 border border-lime/40 flex items-center justify-center">
+            <span class="font-display font-700 text-limeDeep text-lg">04</span>
+          </div>
+          <div>
+            <h3 class="font-display font-700 text-base text-ink">Use no roteiro otimizado da semana</h3>
+            <p class="text-muted text-sm mt-1.5 leading-relaxed">
+              Suas receitas criadas por IA entram no algoritmo de Caminho Crítico junto com as demais — e você cozinha tudo em paralelo, no menor tempo possível.
+            </p>
+          </div>
         </div>
       </div>
+
       <!-- Phone mock -->
-      <div class="phone-wrap flex-shrink-0">
+      <div class="phone-wrap flex-shrink-0 order-1 lg:order-2">
         <div class="phone-outer">
           <div class="phone-screen" style="background:#FAF7EF">
-            <div style="background:#FAF7EF;padding:10px 14px 4px;display:flex;justify-content:space-between;align-items:center">
-              <span style="font-size:11px;font-weight:600;color:#16352E">19:45</span>
-              <span style="font-size:10px;color:#5C6A60">●●● ▲ 🔋</span>
+            <div style="background:#FAF7EF;padding:12px 16px 4px;display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:12px;font-weight:600;color:#16352E">19:45</span>
+              <span style="font-size:11px;color:#5C6A60">●●● ▲ 🔋</span>
             </div>
-            <div style="padding:8px 14px 10px">
-              <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:#16352E">✨ Criar com IA</div>
-              <div style="font-size:11px;color:#5C6A60;margin-top:2px">Digite o nome de qualquer receita</div>
+            <div style="padding:10px 16px 12px">
+              <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;color:#16352E">✨ Criar com IA</div>
+              <div style="font-size:12px;color:#5C6A60;margin-top:3px">Digite o nome de qualquer receita</div>
             </div>
-            <div style="margin:0 12px 12px;background:#fff;border:2px solid #8BD11F;border-radius:16px;padding:10px 14px;display:flex;align-items:center;gap:8px">
-              <span style="font-size:12px;color:#6FB014">✨</span>
-              <span style="font-size:12px;color:#16352E;font-weight:600">Frango ao limão siciliano</span>
+            <div style="margin:0 14px 10px;background:#fff;border:2px solid #8BD11F;border-radius:18px;padding:11px 14px;display:flex;align-items:center;gap:8px">
+              <span style="font-size:13px;color:#6FB014">✨</span>
+              <span style="font-size:13px;color:#16352E;font-weight:600;flex:1">Frango ao limão siciliano</span>
             </div>
-            <div style="margin:0 12px 14px;background:#8BD11F;border-radius:14px;padding:12px;text-align:center;font-size:13px;font-weight:700;color:#16352E">Gerar etapas detalhadas →</div>
-            <div style="margin:0 12px;background:#F2ECDD;border-radius:14px;padding:12px">
+            <div style="margin:0 14px 14px;background:#8BD11F;border-radius:16px;padding:13px;text-align:center;font-size:14px;font-weight:700;color:#16352E">Gerar com IA →</div>
+            <div style="margin:0 14px 10px;background:#F0FAE8;border:1px solid rgba(111,176,20,0.3);border-radius:16px;padding:10px 12px;display:flex;align-items:center;gap:8px">
+              <span style="font-size:13px">✅</span>
+              <span style="font-size:11px;color:#3a5c00;font-weight:700">Receita criada e salva!</span>
+            </div>
+            <div style="margin:0 14px;background:#F2ECDD;border-radius:16px;padding:12px">
               <div style="font-size:9px;font-weight:700;color:#5C6A60;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Etapas geradas pela IA</div>
-              <div style="display:flex;flex-direction:column;gap:6px">
-                <div style="background:#fff;border-radius:10px;padding:7px 10px;display:flex;gap:8px;align-items:flex-start">
-                  <span style="background:#8BD11F;color:#16352E;font-weight:700;font-size:9px;border-radius:6px;padding:2px 6px;flex-shrink:0">01</span>
-                  <span style="font-size:10px;color:#16352E">Temperar o frango com sal, limão e alho por 15min</span>
+              <div style="display:flex;flex-direction:column;gap:7px">
+                <div style="background:#fff;border-radius:11px;padding:8px 10px;display:flex;gap:8px;align-items:flex-start">
+                  <span style="background:#FFF3EE;color:#FF6B35;font-weight:700;font-size:9px;border-radius:20px;padding:2px 7px;flex-shrink:0">AÇÃO</span>
+                  <div style="flex:1">
+                    <div style="font-size:10px;font-weight:600;color:#16352E">Temperar o frango</div>
+                    <div style="font-size:9px;color:#9CA3AF;margin-top:2px">15min · Marinar com limão, sal e alho</div>
+                  </div>
                 </div>
-                <div style="background:#fff;border-radius:10px;padding:7px 10px;display:flex;gap:8px;align-items:flex-start">
-                  <span style="background:#E7E0D0;color:#16352E;font-weight:700;font-size:9px;border-radius:6px;padding:2px 6px;flex-shrink:0">02</span>
-                  <span style="font-size:10px;color:#5C6A60">Pré-aquecer o forno a 200°C (10min)</span>
+                <div style="background:#fff;border-radius:11px;padding:8px 10px;display:flex;gap:8px;align-items:flex-start">
+                  <span style="background:#FEFCE8;color:#EAB308;font-weight:700;font-size:9px;border-radius:20px;padding:2px 7px;flex-shrink:0">ESPERA</span>
+                  <div style="flex:1">
+                    <div style="font-size:10px;font-weight:600;color:#16352E">Marinar na geladeira</div>
+                    <div style="font-size:9px;color:#9CA3AF;margin-top:2px">30min · Aguardar marinada</div>
+                  </div>
                 </div>
-                <div style="background:#fff;border-radius:10px;padding:7px 10px;display:flex;gap:8px;align-items:flex-start">
-                  <span style="background:#E7E0D0;color:#16352E;font-weight:700;font-size:9px;border-radius:6px;padding:2px 6px;flex-shrink:0">03</span>
-                  <span style="font-size:10px;color:#5C6A60">Assar por 35min e regar com o molho a cada 10min</span>
+                <div style="background:#fff;border-radius:11px;padding:8px 10px;display:flex;gap:8px;align-items:flex-start">
+                  <span style="background:#FFF3EE;color:#FF6B35;font-weight:700;font-size:9px;border-radius:20px;padding:2px 7px;flex-shrink:0">AÇÃO</span>
+                  <div style="flex:1">
+                    <div style="font-size:10px;font-weight:600;color:#16352E">Grelhar no fogão</div>
+                    <div style="font-size:9px;color:#9CA3AF;margin-top:2px">12min cada lado · Fogo médio-alto</div>
+                  </div>
+                </div>
+                <div style="background:#fff;border-radius:11px;padding:8px 10px;display:flex;gap:8px;align-items:flex-start">
+                  <span style="background:#FAF5FF;color:#A855F7;font-weight:700;font-size:9px;border-radius:20px;padding:2px 7px;flex-shrink:0">ARMAZ.</span>
+                  <div style="flex:1">
+                    <div style="font-size:10px;font-weight:600;color:#16352E">Porcionar e refrigerar</div>
+                    <div style="font-size:9px;color:#9CA3AF;margin-top:2px">5min · Marmitas prontas</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -691,33 +801,6 @@
 </div>
 
 <script>
-  // ─── Tabs (manual only, no auto-advance) ──────────────────────────
-  var TABS = 3;
-  var current = 0;
-
-  function activateTab(idx) {
-    for (var i = 0; i < TABS; i++) {
-      document.getElementById('tab-' + i).classList.toggle('active', i === idx);
-      var pan = document.getElementById('panel-' + i);
-      pan.classList.toggle('active', i === idx);
-      pan.style.display = (i === idx) ? 'block' : 'none';
-    }
-    current = idx;
-  }
-
-  document.getElementById('panel-0').style.display = 'block';
-  document.getElementById('panel-1').style.display = 'none';
-  document.getElementById('panel-2').style.display = 'none';
-  activateTab(0);
-
-  for (var t = 0; t < TABS; t++) {
-    (function(idx) {
-      document.getElementById('tab-' + idx).addEventListener('click', function() {
-        activateTab(idx);
-      });
-    })(t);
-  }
-
   // ─── Forms ────────────────────────────────────────────────────────
   function isInstagramBrowser() {
     return /Instagram/.test(navigator.userAgent);
