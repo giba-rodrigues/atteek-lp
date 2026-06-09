@@ -46,9 +46,14 @@
     .grid-bg{background-image:linear-gradient(rgba(28,122,99,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(28,122,99,.05) 1px,transparent 1px);background-size:44px 44px}
 
     /* Phone frame */
-    .phone-wrap{width:240px;flex-shrink:0}
+    .phone-wrap{width:210px;flex-shrink:0}
     .phone-outer{background:#1a1a1a;border-radius:40px;padding:8px;box-shadow:0 40px 80px rgba(22,53,46,.28),0 10px 30px rgba(22,53,46,.14),inset 0 0 0 1px rgba(255,255,255,.06)}
-    .phone-screen{background:#FAF7EF;border-radius:32px;height:490px;overflow:hidden;position:relative;font-family:'Inter',sans-serif}
+    .phone-screen{background:#FAF7EF;border-radius:32px;height:430px;overflow:hidden;position:relative;font-family:'Inter',sans-serif}
+    @media(max-width:640px){.phone-wrap{width:172px}.phone-screen{height:340px}}
+    /* Instagram modal */
+    #ig-modal{position:fixed;inset:0;z-index:9000;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.5)}
+    #ig-modal.open{display:flex}
+    #ig-sheet{background:#fff;border-radius:24px 24px 0 0;padding:28px 24px 40px;max-width:420px;width:100%;text-align:center}
 
     /* Demo panels */
     .demo-panel{display:none}
@@ -186,7 +191,7 @@
 
     <!-- PANEL 1: Escolha — text first, phone below on mobile -->
     <div class="demo-panel active" id="panel-0">
-      <div class="flex flex-col lg:flex-row-reverse items-center gap-10 lg:gap-16 lg:justify-center">
+      <div class="flex flex-col-reverse lg:flex-row-reverse items-center gap-8 lg:gap-16 lg:justify-center">
         <!-- Text (top on mobile, right on desktop with flex-row-reverse) -->
         <div class="max-w-md w-full">
           <div class="inline-flex items-center gap-2 bg-lime/15 border border-lime/40 rounded-full px-3 py-1.5 text-xs text-limeDeep font-600 mb-5">
@@ -276,7 +281,7 @@
 
     <!-- PANEL 2: Otimize -->
     <div class="demo-panel" id="panel-1">
-      <div class="flex flex-col lg:flex-row-reverse items-center gap-10 lg:gap-16 lg:justify-center">
+      <div class="flex flex-col-reverse lg:flex-row-reverse items-center gap-8 lg:gap-16 lg:justify-center">
         <div class="max-w-md w-full">
           <div class="inline-flex items-center gap-2 bg-lime/15 border border-lime/40 rounded-full px-3 py-1.5 text-xs text-limeDeep font-600 mb-5">
             <i class="fa-solid fa-wand-magic-sparkles"></i> Passo 2 de 3
@@ -367,7 +372,7 @@
 
     <!-- PANEL 3: Cozinhe -->
     <div class="demo-panel" id="panel-2">
-      <div class="flex flex-col lg:flex-row-reverse items-center gap-10 lg:gap-16 lg:justify-center">
+      <div class="flex flex-col-reverse lg:flex-row-reverse items-center gap-8 lg:gap-16 lg:justify-center">
         <div class="max-w-md w-full">
           <div class="inline-flex items-center gap-2 bg-lime/15 border border-lime/40 rounded-full px-3 py-1.5 text-xs text-limeDeep font-600 mb-5">
             <i class="fa-solid fa-microphone"></i> Passo 3 de 3
@@ -483,7 +488,7 @@
         <div class="text-mustard mb-4 text-sm">
           <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
         </div>
-        <blockquote class="text-ink/90 leading-relaxed flex-1 text-sm sm:text-base">"Levo marmita há anos e achei que não tinha o que melhorar. Cronometrei: cortei <strong class="text-limeDeep">1h10 do meu domingo</strong>. A tarde voltou a ser minha."</blockquote>
+        <blockquote class="text-ink/90 leading-relaxed flex-1 text-sm sm:text-base">"Eu ficava umas 3 horas na cozinha todo domingo e chegava na segunda exausta. Agora faço tudo em pouco mais de 1 hora e ainda sobra tempo pra descansar. Foi a melhor mudança de hábito que fiz."</blockquote>
         <figcaption class="flex items-center gap-3 mt-6">
           <img class="w-11 h-11 rounded-full object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=90&q=80&auto=format&fit=crop" alt="" />
           <div>
@@ -496,7 +501,7 @@
         <div class="text-mustard mb-4 text-sm">
           <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
         </div>
-        <blockquote class="text-ink/90 leading-relaxed flex-1 text-sm sm:text-base">"Dieta com macros é protocolo. Agora preparo a semana com o celular na bancada, avançando <strong class="text-limeDeep">por voz</strong>. Mudou o jogo."</blockquote>
+        <blockquote class="text-ink/90 leading-relaxed flex-1 text-sm sm:text-base">"Antes eu ficava nervoso na cozinha, sempre esquecendo alguma coisa no fogo ou perdendo tempo esperando uma coisa pra começar outra. Agora o app me diz exatamente o que fazer. É tranquilidade total."</blockquote>
         <figcaption class="flex items-center gap-3 mt-6">
           <img class="w-11 h-11 rounded-full object-cover" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=90&q=80&auto=format&fit=crop" alt="" />
           <div>
@@ -509,7 +514,7 @@
         <div class="text-mustard mb-4 text-sm">
           <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
         </div>
-        <blockquote class="text-ink/90 leading-relaxed flex-1 text-sm sm:text-base">"Na copa virei referência. Todo mundo pergunta como dá tempo de cozinhar tudo. Mostro o Atteek e <strong class="text-limeDeep">o time só cresce</strong>."</blockquote>
+        <blockquote class="text-ink/90 leading-relaxed flex-1 text-sm sm:text-base">"Eu detestava aquela sensação de passar a tarde inteira na cozinha e ainda ter a impressão de que deu errado. Com o Atteek ficou mais rápido, mais organizado e eu saio da cozinha satisfeita toda vez."</blockquote>
         <figcaption class="flex items-center gap-3 mt-6">
           <img class="w-11 h-11 rounded-full object-cover" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=90&q=80&auto=format&fit=crop" alt="" />
           <div>
@@ -518,6 +523,81 @@
           </div>
         </figcaption>
       </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AI RECIPE FEATURE ═══ -->
+<section class="relative py-16 sm:py-20 overflow-hidden">
+  <div class="aurora bg-lime/20 w-[24rem] h-[24rem] top-0 -right-20"></div>
+  <div class="relative z-10 max-w-5xl mx-auto px-5 sm:px-8">
+    <div class="reveal flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+      <!-- Text side -->
+      <div class="max-w-md w-full">
+        <div class="inline-flex items-center gap-2 bg-lime/15 border border-lime/40 rounded-full px-3 py-1.5 text-xs text-limeDeep font-600 mb-5">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Novo recurso Premium
+        </div>
+        <h2 class="font-display font-700 text-2xl sm:text-3xl text-ink leading-tight">
+          Criou o nome da receita.<br>O Atteek criou os passos.
+        </h2>
+        <p class="text-muted mt-4 leading-relaxed">
+          Tem aquela receita da sua mãe, ou algo que você quer testar, mas não sabe nem por onde começar? Digita o nome e a IA gera um roteiro completo, etapa por etapa, já pronto para o preparo. Fica salvo em <strong class="text-ink">Minhas Receitas</strong> pra você usar quando quiser.
+        </p>
+        <ul class="mt-5 space-y-3">
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+            <span class="text-sm text-ink">Funciona com qualquer receita — da mais simples à mais elaborada</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+            <span class="text-sm text-ink">Gera etapas detalhadas com tempos e dicas de preparo</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-circle-check text-limeDeep mt-0.5 flex-shrink-0"></i>
+            <span class="text-sm text-ink">Salva automaticamente para reaproveitamento nas próximas semanas</span>
+          </li>
+        </ul>
+        <div class="mt-6 inline-flex items-center gap-2 bg-lime/10 border border-lime/30 rounded-2xl px-4 py-3 text-sm text-limeDeep font-600">
+          <i class="fa-solid fa-lock-open"></i> Disponível no plano Premium
+        </div>
+      </div>
+      <!-- Phone mock -->
+      <div class="phone-wrap flex-shrink-0">
+        <div class="phone-outer">
+          <div class="phone-screen" style="background:#FAF7EF">
+            <div style="background:#FAF7EF;padding:10px 14px 4px;display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:11px;font-weight:600;color:#16352E">19:45</span>
+              <span style="font-size:10px;color:#5C6A60">●●● ▲ 🔋</span>
+            </div>
+            <div style="padding:8px 14px 10px">
+              <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:#16352E">✨ Criar com IA</div>
+              <div style="font-size:11px;color:#5C6A60;margin-top:2px">Digite o nome de qualquer receita</div>
+            </div>
+            <div style="margin:0 12px 12px;background:#fff;border:2px solid #8BD11F;border-radius:16px;padding:10px 14px;display:flex;align-items:center;gap:8px">
+              <span style="font-size:12px;color:#6FB014">✨</span>
+              <span style="font-size:12px;color:#16352E;font-weight:600">Frango ao limão siciliano</span>
+            </div>
+            <div style="margin:0 12px 14px;background:#8BD11F;border-radius:14px;padding:12px;text-align:center;font-size:13px;font-weight:700;color:#16352E">Gerar etapas detalhadas →</div>
+            <div style="margin:0 12px;background:#F2ECDD;border-radius:14px;padding:12px">
+              <div style="font-size:9px;font-weight:700;color:#5C6A60;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Etapas geradas pela IA</div>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div style="background:#fff;border-radius:10px;padding:7px 10px;display:flex;gap:8px;align-items:flex-start">
+                  <span style="background:#8BD11F;color:#16352E;font-weight:700;font-size:9px;border-radius:6px;padding:2px 6px;flex-shrink:0">01</span>
+                  <span style="font-size:10px;color:#16352E">Temperar o frango com sal, limão e alho por 15min</span>
+                </div>
+                <div style="background:#fff;border-radius:10px;padding:7px 10px;display:flex;gap:8px;align-items:flex-start">
+                  <span style="background:#E7E0D0;color:#16352E;font-weight:700;font-size:9px;border-radius:6px;padding:2px 6px;flex-shrink:0">02</span>
+                  <span style="font-size:10px;color:#5C6A60">Pré-aquecer o forno a 200°C (10min)</span>
+                </div>
+                <div style="background:#fff;border-radius:10px;padding:7px 10px;display:flex;gap:8px;align-items:flex-start">
+                  <span style="background:#E7E0D0;color:#16352E;font-weight:700;font-size:9px;border-radius:6px;padding:2px 6px;flex-shrink:0">03</span>
+                  <span style="font-size:10px;color:#5C6A60">Assar por 35min e regar com o molho a cada 10min</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -593,6 +673,23 @@
   </div>
 </div>
 
+<!-- Instagram browser modal -->
+<div id="ig-modal">
+  <div id="ig-sheet">
+    <p style="font-size:2.4rem;margin-bottom:8px">📱</p>
+    <h3 style="font-size:1.1rem;font-weight:700;color:#1a1a1a;margin-bottom:8px">Abra no seu navegador</h3>
+    <p style="font-size:.875rem;color:#555;line-height:1.5;margin-bottom:20px">
+      Para a melhor experiência com o Atteek,<br>abra este link no <strong>Chrome</strong> ou <strong>Safari</strong>.
+    </p>
+    <div style="background:#f5f5f5;border-radius:12px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px">
+      <span style="font-size:.875rem;color:#1a1a1a;font-weight:600">app.atteek.com</span>
+      <button id="ig-copy-btn" style="background:#B8FF4F;border:none;border-radius:8px;padding:6px 14px;font-size:.8rem;font-weight:700;color:#1a1a1a;cursor:pointer;flex-shrink:0">Copiar link</button>
+    </div>
+    <p style="font-size:.75rem;color:#888;margin-bottom:20px">Toque nos três pontinhos (⋮) e escolha "Abrir no navegador"</p>
+    <button id="ig-modal-close" style="width:100%;padding:14px;border-radius:14px;border:2px solid #e0e0e0;background:transparent;font-size:.9rem;font-weight:600;color:#555;cursor:pointer">Fechar</button>
+  </div>
+</div>
+
 <script>
   // ─── Tabs (manual only, no auto-advance) ──────────────────────────
   var TABS = 3;
@@ -622,69 +719,57 @@
   }
 
   // ─── Forms ────────────────────────────────────────────────────────
-  var API_URL = 'https://app.atteek.com/api/auth/instagram-entry';
-
-  function showSuccess(url, formWrapId, successId, linkId) {
-    document.getElementById(formWrapId).classList.add('hidden');
-    var link = document.getElementById(linkId);
-    if (url) { link.href = url; }
-    document.getElementById(successId).classList.remove('hidden');
-    // Scroll to success
-    document.getElementById(successId).scrollIntoView({ behavior: 'smooth', block: 'center' });
+  function isInstagramBrowser() {
+    return /Instagram/.test(navigator.userAgent);
   }
 
-  function submitEmail(email, errorEl, btn, formWrapId, successId, linkId) {
-    if (!email || !/\S+@\S+\.\S+/.test(email)) {
+  function handleFormSubmit(emailVal, errorEl) {
+    if (!emailVal || !/\S+@\S+\.\S+/.test(emailVal)) {
       errorEl.classList.remove('hidden');
       return;
     }
     errorEl.classList.add('hidden');
-    var orig = btn.innerHTML;
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Aguarde...';
 
-    fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email }),
-    })
-      .then(function(r) { return r.json(); })
-      .then(function(d) {
-        if (d.ok) {
-          showSuccess(d.url, formWrapId, successId, linkId);
-        } else {
-          btn.disabled = false;
-          btn.innerHTML = orig;
-          errorEl.textContent = d.error || 'Erro. Tente novamente.';
-          errorEl.classList.remove('hidden');
-        }
-      })
-      .catch(function() {
-        btn.disabled = false;
-        btn.innerHTML = orig;
-        errorEl.textContent = 'Erro de conexão. Tente novamente.';
-        errorEl.classList.remove('hidden');
-      });
+    if (isInstagramBrowser()) {
+      document.getElementById('ig-modal').classList.add('open');
+      return;
+    }
+
+    window.location.href = 'https://app.atteek.com/onboarding?email=' + encodeURIComponent(emailVal);
   }
 
   document.getElementById('hero-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    submitEmail(
+    handleFormSubmit(
       document.getElementById('hero-email').value.trim(),
-      document.getElementById('hero-error'),
-      document.getElementById('hero-btn'),
-      'hero-form-wrap', 'hero-success', 'hero-access-link'
+      document.getElementById('hero-error')
     );
   });
 
   document.getElementById('final-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    submitEmail(
+    handleFormSubmit(
       document.getElementById('final-email').value.trim(),
-      document.getElementById('final-error'),
-      document.getElementById('final-btn'),
-      'final-form-wrap', 'final-success', 'final-access-link'
+      document.getElementById('final-error')
     );
+  });
+
+  // ─── Instagram modal ─────────────────────────────────────────────
+  document.getElementById('ig-modal-close').addEventListener('click', function() {
+    document.getElementById('ig-modal').classList.remove('open');
+  });
+  document.getElementById('ig-modal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
+  document.getElementById('ig-copy-btn').addEventListener('click', function() {
+    navigator.clipboard.writeText('app.atteek.com').then(function() {
+      document.getElementById('ig-copy-btn').textContent = '✓ Copiado!';
+      setTimeout(function() { document.getElementById('ig-copy-btn').textContent = 'Copiar link'; }, 2000);
+    }).catch(function() {
+      var el = document.getElementById('ig-copy-btn');
+      el.textContent = '✓ Copiado!';
+      setTimeout(function() { el.textContent = 'Copiar link'; }, 2000);
+    });
   });
 
   function showToast() {
